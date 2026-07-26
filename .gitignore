@@ -1,0 +1,54 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.eggs/
+*.egg
+
+# === 同步数据（运行时生成，不入库）===
+_chat_export/
+_images/
+_calendar_export/
+_contacts_export/
+_minutes_export/
+_todo_export/
+_sync_state/
+_test_download/
+_all_convs.json
+
+# === 会话文件下载目录（中文命名的文件夹）===
+# 这些是同步下来的聊天文件，按会话名命名
+# 用通配排除所有非源码目录
+/*.exe
+/*.dll
+
+# === Viewer 生成的索引（运行时生成）===
+_viewer/conv_index.json
+_viewer/files_index.json
+_viewer/image_index.json
+_viewer/calendar_index.json
+_viewer/schedule_index.json
+_viewer/todo_index.json
+_viewer/minutes_index.json
+
+# === 打包构建产物 ===
+packaging/build/
+packaging/dist/
+packaging/Output/
+
+# === 配置文件（含个人信息，用 example 替代）===
+sync_config.json
+
+# === 系统/编辑器 ===
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# === 日志 ===
+*.log

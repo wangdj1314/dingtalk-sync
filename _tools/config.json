@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "account": {
+    "name": "汪德嘉",
+    "description": "东方日升新能源股份有限公司 / 基础架构部",
+    "corp_id": "dingc78529e95ab330a135c2f4657eb6378f"
+  },
+  "paths": {
+    "sync_dir": "",
+    "convs_file": "_all_convs.json",
+    "dws_core": "",
+    "chat_export_subdir": "_chat_export"
+  },
+  "defaults": {
+    "days": 7,
+    "request_interval": 0.3
+  },
+  "features": {
+    "auto_download": true,
+    "export_csv": false
+  },
+  "dingtalk": {
+    "access_token": ""
+  }
+}

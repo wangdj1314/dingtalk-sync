@@ -1,0 +1,711 @@
+import { useState, useEffect, useRef } from "react";
+
+// ============================================================
+// 钉钉同步工具 v2.1 - UI Demo
+// Windows 11 Fluent Design Style
+// ============================================================
+
+const COLORS = {
+  bg: "#f3f3f3",
+  card: "#ffffff",
+  cardHover: "#fafafa",
+  accent: "#0067c0",
+  accentLight: "#e8f0fe",
+  accentDark: "#004a8f",
+  text: "#1a1a1a",
+  textSecondary: "#616161",
+  textMuted: "#9e9e9e",
+  border: "#e5e5e5",
+  success: "#0f7b0f",
+  successBg: "#dff6dd",
+  warning: "#9d5d00",
+  warningBg: "#fff4ce",
+  error: "#c42b1c",
+  errorBg: "#fde7e9",
+  sidebar: "#f9f9f9",
+  sidebarActive: "#e8f0fe",
+};
+
+// ---- Icons (inline SVG) ----
+const Icon = ({ name, size = 20, color = "currentColor" }) => {
+  const icons = {
+    home: <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1h-2z" />,
+    sync: <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />,
+    settings: <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065zM15 12a3 3 0 11-6 0 3 3 0 016 0z" />,
+    log: <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />,
+    file: <path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />,
+    image: <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />,
+    chat: <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />,
+    disk: <path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />,
+    check: <path d="M5 13l4 4L19 7" />,
+    clock: <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />,
+    folder: <path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />,
+    user: <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />,
+    shield: <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />,
+    play: <path d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />,
+    download: <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />,
+    bell: <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />,
+    x: <path d="M6 18L18 6M6 6l12 12" />,
+    chevron: <path d="M9 5l7 7-7 7" />,
+    video: <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />,
+  };
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      {icons[name] || icons.file}
+    </svg>
+  );
+};
+
+// ---- Toggle Switch ----
+const Toggle = ({ checked, onChange, label, desc }) => (
+  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 0" }}>
+    <div>
+      <div style={{ fontSize: 13, fontWeight: 500, color: COLORS.text }}>{label}</div>
+      {desc && <div style={{ fontSize: 11.5, color: COLORS.textMuted, marginTop: 2 }}>{desc}</div>}
+    </div>
+    <div
+      onClick={() => onChange(!checked)}
+      style={{
+        width: 40, height: 20, borderRadius: 10, cursor: "pointer", position: "relative",
+        background: checked ? COLORS.accent : "#ccc", transition: "background 0.2s",
+      }}
+    >
+      <div style={{
+        width: 14, height: 14, borderRadius: 7, background: "#fff", position: "absolute",
+        top: 3, left: checked ? 23 : 3, transition: "left 0.2s", boxShadow: "0 1px 2px rgba(0,0,0,0.2)",
+      }} />
+    </div>
+  </div>
+);
+
+// ---- Stat Card ----
+const StatCard = ({ icon, label, value, sub, color = COLORS.accent }) => (
+  <div style={{
+    background: COLORS.card, borderRadius: 8, padding: "16px 18px",
+    border: `1px solid ${COLORS.border}`, flex: 1, minWidth: 140,
+  }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+      <div style={{
+        width: 32, height: 32, borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center",
+        background: color + "14",
+      }}>
+        <Icon name={icon} size={17} color={color} />
+      </div>
+      <span style={{ fontSize: 12, color: COLORS.textSecondary }}>{label}</span>
+    </div>
+    <div style={{ fontSize: 22, fontWeight: 700, color: COLORS.text, lineHeight: 1.1 }}>{value}</div>
+    {sub && <div style={{ fontSize: 11, color: COLORS.textMuted, marginTop: 4 }}>{sub}</div>}
+  </div>
+);
+
+// ---- Progress Bar ----
+const ProgressBar = ({ value, height = 6, color = COLORS.accent }) => (
+  <div style={{ width: "100%", height, borderRadius: height / 2, background: "#e8e8e8", overflow: "hidden" }}>
+    <div style={{
+      width: `${value}%`, height: "100%", borderRadius: height / 2, background: color,
+      transition: "width 0.5s ease",
+    }} />
+  </div>
+);
+
+// ============================================================
+// Login Screen
+// ============================================================
+const LoginScreen = ({ onLogin }) => {
+  const [scanning, setScanning] = useState(false);
+  const [done, setDone] = useState(false);
+
+  const startScan = () => {
+    setScanning(true);
+    setTimeout(() => { setScanning(false); setDone(true); }, 2500);
+    setTimeout(onLogin, 3200);
+  };
+
+  return (
+    <div style={{
+      width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center",
+      background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    }}>
+      <div style={{
+        background: "#fff", borderRadius: 16, padding: "48px 44px", width: 380,
+        boxShadow: "0 20px 60px rgba(0,0,0,0.3)", textAlign: "center",
+      }}>
+        <div style={{
+          width: 56, height: 56, borderRadius: 14, background: "#0067c0", margin: "0 auto 18px",
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}>
+          <Icon name="sync" size={28} color="#fff" />
+        </div>
+        <h1 style={{ fontSize: 20, fontWeight: 700, color: COLORS.text, margin: "0 0 6px" }}>钉钉同步工具</h1>
+        <p style={{ fontSize: 12.5, color: COLORS.textMuted, margin: "0 0 28px" }}>DingTalk Sync v2.1 · 本地独立运行</p>
+
+        {!scanning && !done && (
+          <div>
+            <div style={{
+              width: 180, height: 180, margin: "0 auto 20px", borderRadius: 12,
+              border: `2px dashed ${COLORS.border}`, display: "flex", alignItems: "center",
+              justifyContent: "center", background: "#fafafa", flexDirection: "column", gap: 8,
+            }}>
+              <Icon name="shield" size={40} color={COLORS.textMuted} />
+              <span style={{ fontSize: 11, color: COLORS.textMuted }}>点击下方按钮获取二维码</span>
+            </div>
+            <button onClick={startScan} style={{
+              width: "100%", padding: "11px 0", borderRadius: 8, border: "none",
+              background: COLORS.accent, color: "#fff", fontSize: 14, fontWeight: 600,
+              cursor: "pointer",
+            }}>
+              扫码登录钉钉
+            </button>
+          </div>
+        )}
+
+        {scanning && (
+          <div style={{ padding: "30px 0" }}>
+            <div style={{
+              width: 180, height: 180, margin: "0 auto 20px", borderRadius: 12,
+              background: "#f0f7ff", display: "flex", alignItems: "center", justifyContent: "center",
+              flexDirection: "column", gap: 12,
+            }}>
+              <div style={{
+                width: 36, height: 36, border: `3px solid ${COLORS.accent}`,
+                borderTopColor: "transparent", borderRadius: "50%",
+                animation: "spin 1s linear infinite",
+              }} />
+              <span style={{ fontSize: 12, color: COLORS.accent }}>等待扫码中...</span>
+            </div>
+            <p style={{ fontSize: 12, color: COLORS.textSecondary }}>请使用钉钉 App 扫描二维码</p>
+          </div>
+        )}
+
+        {done && (
+          <div style={{ padding: "30px 0" }}>
+            <div style={{
+              width: 56, height: 56, borderRadius: "50%", background: COLORS.successBg,
+              display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px",
+            }}>
+              <Icon name="check" size={28} color={COLORS.success} />
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: COLORS.success }}>登录成功</p>
+            <p style={{ fontSize: 12, color: COLORS.textSecondary, marginTop: 4 }}>汪德嘉 · 东方日升新能源股份有限公司</p>
+          </div>
+        )}
+      </div>
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+    </div>
+  );
+};
+
+// ============================================================
+// Setup Screen
+// ============================================================
+const SetupScreen = ({ onDone }) => {
+  const [dir, setDir] = useState("D:\\myfiles\\钉钉同步");
+  return (
+    <div style={{
+      width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center",
+      background: COLORS.bg,
+    }}>
+      <div style={{
+        background: COLORS.card, borderRadius: 12, padding: "36px 32px", width: 460,
+        border: `1px solid ${COLORS.border}`, boxShadow: "0 4px 20px rgba(0,0,0,0.06)",
+      }}>
+        <h2 style={{ fontSize: 17, fontWeight: 700, margin: "0 0 4px", color: COLORS.text }}>初始设置</h2>
+        <p style={{ fontSize: 12, color: COLORS.textMuted, margin: "0 0 24px" }}>选择文件同步的本地存储位置</p>
+
+        <div style={{ marginBottom: 18 }}>
+          <label style={{ fontSize: 12, fontWeight: 600, color: COLORS.textSecondary, display: "block", marginBottom: 6 }}>
+            同步根目录
+          </label>
+          <div style={{ display: "flex", gap: 8 }}>
+            <input
+              value={dir} onChange={e => setDir(e.target.value)}
+              style={{
+                flex: 1, padding: "9px 12px", borderRadius: 6, border: `1px solid ${COLORS.border}`,
+                fontSize: 13, color: COLORS.text, outline: "none", background: "#fafafa",
+              }}
+            />
+            <button style={{
+              padding: "9px 14px", borderRadius: 6, border: `1px solid ${COLORS.border}`,
+              background: "#fff", cursor: "pointer", display: "flex", alignItems: "center", gap: 4,
+              fontSize: 12, color: COLORS.textSecondary,
+            }}>
+              <Icon name="folder" size={15} /> 浏览
+            </button>
+          </div>
+          <p style={{ fontSize: 11, color: COLORS.textMuted, marginTop: 6 }}>
+            文件、图片、聊天记录将保存到此目录下
+          </p>
+        </div>
+
+        <div style={{
+          background: "#f8f9fa", borderRadius: 8, padding: "14px 16px", marginBottom: 22,
+          border: `1px solid ${COLORS.border}`,
+        }}>
+          <div style={{ fontSize: 12, fontWeight: 600, color: COLORS.text, marginBottom: 8 }}>目录结构预览</div>
+          <div style={{ fontSize: 11.5, color: COLORS.textSecondary, lineHeight: 1.8, fontFamily: "Consolas, monospace" }}>
+            {dir}\<br />
+            ├── 会话名称\日期\文件...<br />
+            ├── _images\会话名称\日期\图片...<br />
+            ├── _chat_export\会话名称.csv<br />
+            ├── _sync_state\ (同步状态)<br />
+            └── sync_config.json
+          </div>
+        </div>
+
+        <button onClick={onDone} style={{
+          width: "100%", padding: "11px 0", borderRadius: 8, border: "none",
+          background: COLORS.accent, color: "#fff", fontSize: 14, fontWeight: 600, cursor: "pointer",
+        }}>
+          开始使用
+        </button>
+      </div>
+    </div>
+  );
+};
+
+// ============================================================
+// Overview Page
+// ============================================================
+const OverviewPage = () => (
+  <div>
+    <div style={{ display: "flex", gap: 12, marginBottom: 16, flexWrap: "wrap" }}>
+      <StatCard icon="file" label="文件" value="406" sub="已下载 118 · 过期 252" color="#0067c0" />
+      <StatCard icon="image" label="媒体" value="297" sub="已下载 170 · 待处理 127" color="#8764b8" />
+      <StatCard icon="chat" label="聊天记录" value="85 会话" sub="最近导出 487 条消息" color="#0f7b0f" />
+      <StatCard icon="disk" label="磁盘占用" value="1.8 GB" sub="475 个文件" color="#9d5d00" />
+    </div>
+
+    {/* Auth Status */}
+    <div style={{
+      background: COLORS.card, borderRadius: 8, border: `1px solid ${COLORS.border}`,
+      padding: "14px 18px", marginBottom: 16, display: "flex", alignItems: "center", justifyContent: "space-between",
+    }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <div style={{
+          width: 34, height: 34, borderRadius: 8, background: COLORS.successBg,
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}>
+          <Icon name="shield" size={18} color={COLORS.success} />
+        </div>
+        <div>
+          <div style={{ fontSize: 13, fontWeight: 600, color: COLORS.text }}>认证状态正常</div>
+          <div style={{ fontSize: 11, color: COLORS.textMuted }}>Token 剩余 1.9h · Refresh 剩余 720h (30天)</div>
+        </div>
+      </div>
+      <div style={{
+        padding: "5px 12px", borderRadius: 6, background: COLORS.successBg,
+        fontSize: 11.5, fontWeight: 600, color: COLORS.success,
+      }}>
+        已认证
+      </div>
+    </div>
+
+    {/* Last Sync */}
+    <div style={{
+      background: COLORS.card, borderRadius: 8, border: `1px solid ${COLORS.border}`, padding: "16px 18px",
+    }}>
+      <div style={{ fontSize: 13, fontWeight: 600, color: COLORS.text, marginBottom: 12 }}>最近同步</div>
+      {[
+        { time: "2026-07-24 23:59", text: "图片重试完成: 尝试258, 成功136", tag: "媒体", tagColor: "#8764b8" },
+        { time: "2026-07-24 23:56", text: "扫描完成: 无新文件/媒体 (85 个会话)", tag: "扫描", tagColor: "#0067c0" },
+        { time: "2026-07-24 08:32", text: "CSV导出完成: 30 会话, 459 消息", tag: "导出", tagColor: "#0f7b0f" },
+        { time: "2026-07-24 08:31", text: "同步完成: 文件新5, 下载0, 过期5", tag: "文件", tagColor: "#9d5d00" },
+        { time: "2026-07-23 08:32", text: "CSV导出完成: 32 会话, 433 消息", tag: "导出", tagColor: "#0f7b0f" },
+      ].map((item, i) => (
+        <div key={i} style={{
+          display: "flex", alignItems: "center", gap: 10, padding: "8px 0",
+          borderBottom: i < 4 ? `1px solid ${COLORS.border}` : "none",
+        }}>
+          <span style={{
+            fontSize: 10, fontWeight: 600, color: item.tagColor, background: item.tagColor + "14",
+            padding: "2px 7px", borderRadius: 4, minWidth: 30, textAlign: "center",
+          }}>{item.tag}</span>
+          <span style={{ fontSize: 12, color: COLORS.text, flex: 1 }}>{item.text}</span>
+          <span style={{ fontSize: 11, color: COLORS.textMuted, whiteSpace: "nowrap" }}>{item.time}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+// ============================================================
+// Sync Page
+// ============================================================
+const SyncPage = () => {
+  const [syncing, setSyncing] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [phase, setPhase] = useState("");
+  const [logs, setLogs] = useState([]);
+  const logRef = useRef(null);
+
+  const startSync = () => {
+    setSyncing(true);
+    setProgress(0);
+    setLogs([]);
+    const steps = [
+      { p: 5, msg: "[INFO] 检查认证状态... Token 有效", phase: "认证检查" },
+      { p: 10, msg: "[INFO] 加载了 85 个会话", phase: "认证检查" },
+      { p: 15, msg: "[INFO] 阶段 1: 扫描会话消息", phase: "扫描消息" },
+      { p: 25, msg: "[INFO]   扫描中 [10/85] 郑晓阳...", phase: "扫描消息" },
+      { p: 35, msg: "[INFO]   扫描中 [30/85] 陈鑫... 发现 5 个文件, 14 个媒体", phase: "扫描消息" },
+      { p: 50, msg: "[INFO]   扫描中 [55/85] 例会群...", phase: "扫描消息" },
+      { p: 60, msg: "[INFO] 扫描完成: 85 会话, 新文件 3, 新媒体 8", phase: "扫描消息" },
+      { p: 65, msg: "[INFO] 阶段 2: 下载文件 (3 个)", phase: "下载文件" },
+      { p: 72, msg: "[INFO]   [1/3] 完成: 项目方案.pdf (2.3 MB)", phase: "下载文件" },
+      { p: 78, msg: "[INFO]   [2/3] 完成: 会议纪要.docx (156 KB)", phase: "下载文件" },
+      { p: 82, msg: "[INFO]   [3/3] 已过期: 旧版报表.xlsx", phase: "下载文件" },
+      { p: 85, msg: "[INFO] 阶段 3: 同步媒体文件 (8 个)", phase: "下载媒体" },
+      { p: 90, msg: "[INFO]   [1/8] 完成(dws): 王瑾/a877a0bf.jpg (129 KB)", phase: "下载媒体" },
+      { p: 93, msg: "[INFO]   [5/8] 完成(dws): 基础架构/e0d76f26.jpg (143 KB)", phase: "下载媒体" },
+      { p: 97, msg: "[INFO] 媒体同步完成: 下载6, 失败2", phase: "下载媒体" },
+      { p: 100, msg: "[INFO] 同步完成! 文件+3, 媒体+6, CSV导出 27会话/487消息", phase: "完成" },
+    ];
+    steps.forEach((s, i) => {
+      setTimeout(() => {
+        setProgress(s.p);
+        setPhase(s.phase);
+        setLogs(prev => [...prev, s.msg]);
+        if (s.p === 100) setTimeout(() => setSyncing(false), 800);
+      }, (i + 1) * 600);
+    });
+  };
+
+  return (
+    <div>
+      {/* Sync Controls */}
+      <div style={{
+        background: COLORS.card, borderRadius: 8, border: `1px solid ${COLORS.border}`,
+        padding: "18px 20px", marginBottom: 16,
+      }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: syncing ? 16 : 0 }}>
+          <div>
+            <div style={{ fontSize: 14, fontWeight: 600, color: COLORS.text }}>手动同步</div>
+            <div style={{ fontSize: 11.5, color: COLORS.textMuted, marginTop: 2 }}>
+              {syncing ? `正在同步 · ${phase}` : "上次同步: 2026-07-24 23:59 · 增量模式 (7天)"}
+            </div>
+          </div>
+          <div style={{ display: "flex", gap: 8 }}>
+            <select style={{
+              padding: "8px 10px", borderRadius: 6, border: `1px solid ${COLORS.border}`,
+              fontSize: 12, color: COLORS.textSecondary, background: "#fff", cursor: "pointer",
+            }}>
+              <option>增量 (7天)</option>
+              <option>增量 (14天)</option>
+              <option>增量 (30天)</option>
+              <option>全量扫描</option>
+            </select>
+            <button onClick={startSync} disabled={syncing} style={{
+              padding: "8px 20px", borderRadius: 6, border: "none",
+              background: syncing ? "#ccc" : COLORS.accent, color: "#fff",
+              fontSize: 13, fontWeight: 600, cursor: syncing ? "default" : "pointer",
+              display: "flex", alignItems: "center", gap: 6,
+            }}>
+              <Icon name={syncing ? "sync" : "play"} size={15} color="#fff" />
+              {syncing ? "同步中..." : "开始同步"}
+            </button>
+          </div>
+        </div>
+        {syncing && (
+          <div>
+            <ProgressBar value={progress} height={6} />
+            <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
+              <span style={{ fontSize: 11, color: COLORS.textMuted }}>{phase}</span>
+              <span style={{ fontSize: 11, fontWeight: 600, color: COLORS.accent }}>{progress}%</span>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Sync Log */}
+      <div style={{
+        background: "#1e1e1e", borderRadius: 8, padding: "14px 16px",
+        height: 320, overflowY: "auto", fontFamily: "Consolas, 'Courier New', monospace",
+      }} ref={logRef}>
+        {logs.length === 0 ? (
+          <div style={{ color: "#666", fontSize: 12, textAlign: "center", paddingTop: 120 }}>
+            点击"开始同步"查看实时日志
+          </div>
+        ) : (
+          logs.map((l, i) => (
+            <div key={i} style={{
+              fontSize: 11.5, lineHeight: 1.7,
+              color: l.includes("完成") ? "#6ec96e" : l.includes("失败") || l.includes("过期") ? "#f14c4c" :
+                     l.includes("阶段") ? "#569cd6" : "#d4d4d4",
+            }}>
+              <span style={{ color: "#666" }}>{new Date().toLocaleTimeString("zh-CN", { hour12: false })} </span>
+              {l}
+            </div>
+          ))
+        )}
+      </div>
+    </div>
+  );
+};
+
+// ============================================================
+// Settings Page
+// ============================================================
+const SettingsPage = () => {
+  const [mediaSync, setMediaSync] = useState(true);
+  const [csvExport, setCsvExport] = useState(true);
+  const [autoSync, setAutoSync] = useState(true);
+  const [videoSync, setVideoSync] = useState(true);
+  const [notify, setNotify] = useState(true);
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+      {/* Schedule */}
+      <div style={{ background: COLORS.card, borderRadius: 8, border: `1px solid ${COLORS.border}`, padding: "18px 20px" }}>
+        <div style={{ fontSize: 13, fontWeight: 600, color: COLORS.text, marginBottom: 14 }}>定时任务</div>
+        <Toggle checked={autoSync} onChange={setAutoSync} label="启用每日自动同步" desc="通过 Windows 计划任务每天定时执行" />
+        <div style={{
+          display: "flex", gap: 12, marginTop: 8, padding: "12px 14px", background: "#f8f9fa",
+          borderRadius: 6, alignItems: "center", opacity: autoSync ? 1 : 0.5,
+        }}>
+          <span style={{ fontSize: 12, color: COLORS.textSecondary }}>每天</span>
+          <select style={{
+            padding: "6px 10px", borderRadius: 5, border: `1px solid ${COLORS.border}`,
+            fontSize: 12, background: "#fff",
+          }}>
+            <option>21:00</option><option>08:00</option><option>12:00</option><option>18:00</option>
+          </select>
+          <span style={{ fontSize: 12, color: COLORS.textSecondary }}>同步最近</span>
+          <select style={{
+            padding: "6px 10px", borderRadius: 5, border: `1px solid ${COLORS.border}`,
+            fontSize: 12, background: "#fff",
+          }}>
+            <option>7 天</option><option>14 天</option><option>30 天</option>
+          </select>
+          <span style={{ fontSize: 12, color: COLORS.textSecondary }}>的消息</span>
+          <div style={{ flex: 1 }} />
+          <span style={{
+            fontSize: 10.5, color: COLORS.success, background: COLORS.successBg,
+            padding: "3px 8px", borderRadius: 4, fontWeight: 600,
+          }}>
+            计划任务已安装
+          </span>
+        </div>
+      </div>
+
+      {/* Sync Options */}
+      <div style={{ background: COLORS.card, borderRadius: 8, border: `1px solid ${COLORS.border}`, padding: "18px 20px" }}>
+        <div style={{ fontSize: 13, fontWeight: 600, color: COLORS.text, marginBottom: 10 }}>同步选项</div>
+        <Toggle checked={mediaSync} onChange={setMediaSync} label="同步图片" desc="下载聊天中的图片消息 (dws download-media)" />
+        <div style={{ borderTop: `1px solid ${COLORS.border}` }} />
+        <Toggle checked={videoSync} onChange={setVideoSync} label="同步视频" desc="下载聊天中的视频消息" />
+        <div style={{ borderTop: `1px solid ${COLORS.border}` }} />
+        <Toggle checked={csvExport} onChange={setCsvExport} label="导出聊天记录 CSV" desc="每次同步时增量导出聊天记录到 _chat_export" />
+        <div style={{ borderTop: `1px solid ${COLORS.border}` }} />
+        <Toggle checked={notify} onChange={setNotify} label="桌面通知" desc="认证过期或同步完成时弹出 Windows 通知" />
+      </div>
+
+      {/* Paths */}
+      <div style={{ background: COLORS.card, borderRadius: 8, border: `1px solid ${COLORS.border}`, padding: "18px 20px" }}>
+        <div style={{ fontSize: 13, fontWeight: 600, color: COLORS.text, marginBottom: 14 }}>路径配置</div>
+        {[
+          { label: "同步根目录", value: "D:\\myfiles\\钉钉同步" },
+          { label: "dws-core 路径", value: "C:\\Users\\wangdj\\.qoderworkcn\\bin\\dws-ext\\dws-core-windows-amd64.exe" },
+          { label: "会话列表", value: "D:\\myfiles\\钉钉同步\\_all_convs.json (85 个会话)" },
+        ].map((item, i) => (
+          <div key={i} style={{ marginBottom: i < 2 ? 12 : 0 }}>
+            <label style={{ fontSize: 11.5, fontWeight: 600, color: COLORS.textSecondary, display: "block", marginBottom: 4 }}>
+              {item.label}
+            </label>
+            <div style={{
+              padding: "8px 12px", borderRadius: 6, background: "#f8f9fa",
+              border: `1px solid ${COLORS.border}`, fontSize: 12, color: COLORS.text,
+              fontFamily: "Consolas, monospace", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+            }}>
+              {item.value}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Danger Zone */}
+      <div style={{ background: COLORS.card, borderRadius: 8, border: `1px solid ${COLORS.border}`, padding: "18px 20px" }}>
+        <div style={{ fontSize: 13, fontWeight: 600, color: COLORS.error, marginBottom: 12 }}>高级操作</div>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          {["重新登录", "卸载计划任务", "重试失败媒体", "重置同步状态"].map(btn => (
+            <button key={btn} style={{
+              padding: "7px 14px", borderRadius: 6,
+              border: `1px solid ${btn === "重置同步状态" ? COLORS.error : COLORS.border}`,
+              background: "#fff", fontSize: 12, cursor: "pointer",
+              color: btn === "重置同步状态" ? COLORS.error : COLORS.textSecondary,
+            }}>
+              {btn}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ============================================================
+// Logs Page
+// ============================================================
+const LogsPage = () => {
+  const logLines = [
+    { t: "2026-07-24 23:59:24", l: "INFO", m: "图片重试完成: 尝试258, 成功136" },
+    { t: "2026-07-24 23:56:02", l: "INFO", m: "扫描完成: 无新文件/媒体 (扫描 85 个会话)" },
+    { t: "2026-07-24 23:55:01", l: "INFO", m: "开始文件同步 (full=False, days=7)" },
+    { t: "2026-07-24 08:32:20", l: "INFO", m: "CSV导出完成: 30 会话, 459 消息, 0 错误" },
+    { t: "2026-07-24 08:31:16", l: "INFO", m: "同步完成: 文件新5, 下载0, 过期5, 失败0, 清单406, 媒体: 新7, 下载0, 失败7" },
+    { t: "2026-07-24 08:30:05", l: "INFO", m: "开始文件同步 (full=False, days=7)" },
+    { t: "2026-07-23 08:32:26", l: "INFO", m: "CSV导出完成: 32 会话, 433 消息, 0 错误" },
+    { t: "2026-07-23 08:31:21", l: "INFO", m: "同步完成: 文件新10, 下载0, 过期10, 失败0, 清单401" },
+    { t: "2026-07-23 08:30:03", l: "INFO", m: "开始文件同步 (full=False, days=7)" },
+    { t: "2026-07-22 08:31:45", l: "INFO", m: "同步完成: 文件新3, 下载1, 过期2, 失败0, 清单391" },
+    { t: "2026-07-22 08:30:02", l: "INFO", m: "开始文件同步 (full=False, days=7)" },
+    { t: "2026-07-21 08:32:10", l: "WARN", m: "认证: token 即将过期 (1.5h)，本次同步正常继续" },
+    { t: "2026-07-21 08:31:55", l: "INFO", m: "同步完成: 文件新8, 下载3, 过期5, 失败0, 清单388" },
+  ];
+  const levelColor = { INFO: COLORS.accent, WARN: COLORS.warning, ERROR: COLORS.error };
+
+  return (
+    <div style={{
+      background: COLORS.card, borderRadius: 8, border: `1px solid ${COLORS.border}`, overflow: "hidden",
+    }}>
+      <div style={{
+        padding: "12px 16px", borderBottom: `1px solid ${COLORS.border}`,
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+      }}>
+        <span style={{ fontSize: 13, fontWeight: 600, color: COLORS.text }}>同步日志</span>
+        <span style={{ fontSize: 11, color: COLORS.textMuted }}>_sync_state/sync.log</span>
+      </div>
+      <div style={{ maxHeight: 460, overflowY: "auto" }}>
+        {logLines.map((l, i) => (
+          <div key={i} style={{
+            display: "flex", gap: 10, padding: "8px 16px", alignItems: "baseline",
+            borderBottom: `1px solid #f0f0f0`, fontSize: 12,
+          }}>
+            <span style={{ color: COLORS.textMuted, fontFamily: "Consolas, monospace", fontSize: 11, whiteSpace: "nowrap" }}>{l.t}</span>
+            <span style={{
+              fontSize: 10, fontWeight: 700, color: levelColor[l.l], background: levelColor[l.l] + "12",
+              padding: "1px 6px", borderRadius: 3, minWidth: 36, textAlign: "center",
+            }}>{l.l}</span>
+            <span style={{ color: COLORS.text, fontFamily: "Consolas, monospace", fontSize: 11.5 }}>{l.m}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// ============================================================
+// Main App
+// ============================================================
+export default function App() {
+  const [screen, setScreen] = useState("login"); // login | setup | main
+  const [page, setPage] = useState("overview");
+
+  const navItems = [
+    { id: "overview", label: "概览", icon: "home" },
+    { id: "sync", label: "同步", icon: "sync" },
+    { id: "settings", label: "设置", icon: "settings" },
+    { id: "logs", label: "日志", icon: "log" },
+  ];
+
+  if (screen === "login") return <div style={{ width: "100%", height: "100vh" }}><LoginScreen onLogin={() => setScreen("setup")} /></div>;
+  if (screen === "setup") return <div style={{ width: "100%", height: "100vh" }}><SetupScreen onDone={() => setScreen("main")} /></div>;
+
+  return (
+    <div style={{ display: "flex", height: "100vh", background: COLORS.bg, fontFamily: "'Segoe UI', system-ui, -apple-system, sans-serif" }}>
+      {/* Sidebar */}
+      <div style={{
+        width: 200, background: COLORS.sidebar, borderRight: `1px solid ${COLORS.border}`,
+        display: "flex", flexDirection: "column", padding: "16px 10px",
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "4px 10px", marginBottom: 24 }}>
+          <div style={{
+            width: 32, height: 32, borderRadius: 8, background: COLORS.accent,
+            display: "flex", alignItems: "center", justifyContent: "center",
+          }}>
+            <Icon name="sync" size={17} color="#fff" />
+          </div>
+          <div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: COLORS.text, lineHeight: 1.2 }}>钉钉同步</div>
+            <div style={{ fontSize: 10, color: COLORS.textMuted }}>v2.1 Standalone</div>
+          </div>
+        </div>
+
+        {navItems.map(item => (
+          <div
+            key={item.id}
+            onClick={() => setPage(item.id)}
+            style={{
+              display: "flex", alignItems: "center", gap: 10, padding: "9px 12px",
+              borderRadius: 6, cursor: "pointer", marginBottom: 2,
+              background: page === item.id ? COLORS.sidebarActive : "transparent",
+              color: page === item.id ? COLORS.accent : COLORS.textSecondary,
+              fontWeight: page === item.id ? 600 : 400, fontSize: 13,
+              transition: "all 0.15s",
+            }}
+          >
+            <Icon name={item.icon} size={17} color={page === item.id ? COLORS.accent : COLORS.textSecondary} />
+            {item.label}
+          </div>
+        ))}
+
+        <div style={{ flex: 1 }} />
+
+        {/* User Info */}
+        <div style={{
+          padding: "12px", borderRadius: 8, background: "#fff",
+          border: `1px solid ${COLORS.border}`,
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{
+              width: 30, height: 30, borderRadius: "50%", background: COLORS.accentLight,
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}>
+              <Icon name="user" size={15} color={COLORS.accent} />
+            </div>
+            <div>
+              <div style={{ fontSize: 12, fontWeight: 600, color: COLORS.text }}>汪德嘉</div>
+              <div style={{ fontSize: 10, color: COLORS.textMuted }}>东方日升 · 基础架构部</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
+        {/* Title Bar */}
+        <div style={{
+          padding: "16px 24px 12px", display: "flex", alignItems: "center", justifyContent: "space-between",
+        }}>
+          <div>
+            <h2 style={{ fontSize: 18, fontWeight: 700, color: COLORS.text, margin: 0 }}>
+              {navItems.find(n => n.id === page)?.label}
+            </h2>
+            <p style={{ fontSize: 11.5, color: COLORS.textMuted, margin: "2px 0 0" }}>
+              {page === "overview" && "同步状态总览与最近活动"}
+              {page === "sync" && "手动执行同步任务并查看实时进度"}
+              {page === "settings" && "配置同步选项、定时任务与路径"}
+              {page === "logs" && "查看历史同步日志记录"}
+            </p>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{
+              display: "flex", alignItems: "center", gap: 5, padding: "5px 10px",
+              borderRadius: 6, background: COLORS.successBg, fontSize: 11, color: COLORS.success, fontWeight: 600,
+            }}>
+              <div style={{ width: 6, height: 6, borderRadius: 3, background: COLORS.success }} />
+              已连接
+            </div>
+          </div>
+        </div>
+
+        {/* Page Content */}
+        <div style={{ flex: 1, overflow: "auto", padding: "0 24px 24px" }}>
+          {page === "overview" && <OverviewPage />}
+          {page === "sync" && <SyncPage />}
+          {page === "settings" && <SettingsPage />}
+          {page === "logs" && <LogsPage />}
+        </div>
+      </div>
+    </div>
+  );
+}

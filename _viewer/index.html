@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>钉钉聊天记录浏览</title>
+  <link rel="stylesheet" href="styles.css?v=9" />
+</head>
+<body>
+  <div id="file-warning" style="display:none;">
+    <div class="warning-box">
+      <h2>⚠️ 请通过 HTTP 服务打开本页面</h2>
+      <p>你当前是直接用浏览器打开 <code>index.html</code>（<code>file://</code> 协议），浏览器会禁止网页读取本地聊天记录文件，所以左侧会话列表为空。</p>
+      <p>请在工作目录启动一个临时本地服务：</p>
+      <pre><code>cd "E:\myfile\钉钉同步"
+python -m http.server 8777 --bind 127.0.0.1</code></pre>
+      <p>然后在浏览器访问：</p>
+      <p><a href="http://127.0.0.1:8777/_viewer/">http://127.0.0.1:8777/_viewer/</a></p>
+      <p>部署到群晖后，通过 Web Station 的 HTTP 地址访问即可，不会出现此提示。</p>
+    </div>
+  </div>
+  <div id="app">
+    <!-- 左侧：会话列表 -->
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <span class="brand-dot"></span>
+          <span class="brand-title">钉钉聊天记录</span>
+        </div>
+        <div class="search-box">
+          <input id="search" type="text" placeholder="搜索会话…" autocomplete="off" />
+        </div>
+        <div class="filter-tabs">
+          <button class="tab active" data-filter="all">全部</button>
+          <button class="tab" data-filter="group">群聊</button>
+          <button class="tab" data-filter="single">单聊</button>
+        </div>
+      </div>
+      <ul id="conv-list" class="conv-list"></ul>
+      <div class="sidebar-footer" id="sidebar-footer">
+        <div class="oo-setting">
+          <label class="oo-label" for="oo-url">OnlyOffice 地址</label>
+          <input id="oo-url" class="oo-url-input" type="text" placeholder="http://10.10.10.6:8080" spellcheck="false" autocomplete="off" />
+        </div>
+        <div class="footer-ver" id="footer-ver">v0.1</div>
+      </div>
+    </aside>
+
+    <!-- 右侧：聊天窗口 -->
+      <main id="chat">
+        <header id="chat-header" class="chat-header">
+          <div class="chat-header-left">
+            <div class="chat-title" id="chat-title">钉钉聊天记录浏览</div>
+            <div class="chat-sub" id="chat-sub"></div>
+          </div>
+          <div class="chat-header-center">
+            <div class="chat-tabs" id="chat-tabs">
+              <button class="chat-tab active" data-tab="chat">聊天记录</button>
+              <button class="chat-tab" data-tab="files">文件</button>
+              <button class="chat-tab" data-tab="schedule">日程</button>
+              <button class="chat-tab" data-tab="minutes">听记</button>
+              <button class="chat-tab" data-tab="todo">待办</button>
+            </div>
+          </div>
+          <div class="chat-header-right">
+            <div class="chat-search-box">
+              <input id="chat-search" type="text" placeholder="搜索聊天记录…" autocomplete="off" />
+            </div>
+          </div>
+        </header>
+        <div id="chat-body" class="chat-body">
+          <div class="empty-state" id="empty-state">
+            <div class="empty-illustration">💬</div>
+            <p>选择左侧任意会话，查看聊天记录</p>
+            <p class="empty-hint">支持文字、文件、图片、日程消息 · 顶部「日程 / 听记 / 待办」为全局汇总</p>
+          </div>
+          <div id="panel-chat" class="chat-panel hidden"></div>
+          <div id="panel-files" class="chat-panel hidden">
+            <div class="files-toolbar">
+              <div class="files-search-box">
+                <input id="files-search" type="text" placeholder="搜索文件…" autocomplete="off" />
+              </div>
+              <div class="files-count" id="files-count"></div>
+            </div>
+            <div class="files-list" id="files-list"></div>
+          </div>
+          <div id="panel-schedule" class="chat-panel hidden">
+            <div class="panel-toolbar cal-toolbar">
+              <div class="cal-nav">
+                <button id="cal-today" class="cal-today">今天</button>
+                <button id="cal-prev" class="cal-arrow" aria-label="上月">‹</button>
+                <span class="cal-title" id="cal-title">2026年7月</span>
+                <button id="cal-next" class="cal-arrow" aria-label="下月">›</button>
+              </div>
+              <div class="cal-views">
+                <button class="cal-view active" data-view="month">月</button>
+                <button class="cal-view" data-view="list">列表</button>
+              </div>
+              <input id="cal-search" class="panel-search" type="text" placeholder="搜索会议 / 日程（主题、组织者、地点）…" autocomplete="off" />
+            </div>
+            <div id="cal-month-wrap" class="cal-month-wrap">
+              <div class="cal-weekdays">
+                <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
+              </div>
+              <div id="cal-grid" class="cal-grid"></div>
+            </div>
+            <div id="cal-list" class="cal-list hidden"></div>
+            <div id="cal-detail" class="cal-detail hidden"></div>
+          </div>
+          <div id="panel-minutes" class="chat-panel hidden">
+            <div class="panel-toolbar">
+              <input id="min-search" class="panel-search" type="text" placeholder="搜索听记（标题、关键词）…" autocomplete="off" />
+            </div>
+            <div class="min-list" id="min-list"></div>
+          </div>
+          <div id="panel-todo" class="chat-panel hidden">
+            <div class="panel-toolbar">
+              <div class="todo-filters" id="todo-filters">
+                <button class="todo-filter active" data-st="all">全部</button>
+                <button class="todo-filter" data-st="未完成">未完成</button>
+                <button class="todo-filter" data-st="已完成">已完成</button>
+              </div>
+              <input id="todo-search" class="panel-search" type="text" placeholder="搜索待办…" autocomplete="off" />
+            </div>
+            <div class="todo-list" id="todo-list"></div>
+          </div>
+        </div>
+      </main>
+  </div>
+
+  <div id="oo-modal" class="oo-modal hidden" aria-hidden="true">
+    <div class="oo-modal-box">
+      <div class="oo-modal-head">
+        <div class="oo-title" id="oo-title"></div>
+        <button class="oo-close" id="oo-close" type="button" aria-label="关闭">×</button>
+      </div>
+      <div class="oo-editor" id="oo-editor"></div>
+    </div>
+  </div>
+
+  <script>
+    if (location.protocol === 'file:') {
+      document.getElementById('app').style.display = 'none';
+      document.getElementById('file-warning').style.display = 'block';
+    }
+  </script>
+  <script src="app.js?v=13"></script>
+</body>
+</html>

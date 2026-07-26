@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "account": {
+    "name": "你的姓名",
+    "description": "公司 / 部门",
+    "corp_id": ""
+  },
+  "paths": {
+    "convs_file": "_all_convs.json",
+    "dws_core": "",
+    "chat_export_subdir": "_chat_export"
+  },
+  "defaults": {
+    "days": 7,
+    "request_interval": 0.3
+  },
+  "features": {
+    "auto_download": true,
+    "export_csv": true
+  }
+}
