@@ -1,0 +1,1 @@
+@echo off/ndws chat conversation-info --group /cidBs2FWtLLlAOcbBilFGSJ6RePL0/ZlRPJwUr7VHIk1qk=/ 2>&1/n

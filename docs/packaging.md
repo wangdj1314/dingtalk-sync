@@ -51,7 +51,7 @@ copy ..\app\resources\dingtalk_sync.ico dist\DingTalkSync\resources\
 ### 产出
 
 - `packaging/dist/DingTalkSync/` — 便携版目录（可直接运行）
-- `packaging/Output/DingTalkSync_Setup_v2.3.exe` — 安装程序（约 38 MB）
+- `packaging/Output/DingTalkSync_Setup_v2.4.exe` — 安装程序（约 38 MB）
 
 ## 安装程序特性
 

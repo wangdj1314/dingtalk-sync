@@ -26,7 +26,7 @@
 配置文件:
     脚本根目录的 sync_config.json，首次运行 --init 自动生成。
 
-版本: 2.3
+版本: 2.4
 """
 
 import argparse
@@ -46,7 +46,7 @@ import urllib.error
 from datetime import datetime, timedelta
 from pathlib import Path
 
-__version__ = "2.3"
+__version__ = "2.4"
 
 # ============================================================
 # 路径配置
@@ -836,18 +836,46 @@ def dws_call(args, timeout=30):
 
 
 def fetch_conversations_dynamic():
-    """动态获取会话列表（合并静态文件，自动发现新会话）"""
+    """动态获取会话列表（合并静态文件，自动发现新会话）
+    使用 list-all-conversations 全量分页拉取，突破旧接口 100 条限制。
+    """
     convs = load_json(CONVS_FILE)
     existing_map = {c["convId"]: c for c in convs} if convs else {}
 
-    data = dws_call(["chat", "+conversation-list", "--limit", "100", "-y"], timeout=30)
-    if not data or data.get("_error") or "error" in data:
-        if existing_map:
-            log("动态获取会话列表失败，使用本地缓存", "WARN")
-            return list(existing_map.values())
-        return []
+    # 使用 list-all-conversations 分页拉取全部会话
+    dynamic_convs = []
+    cursor = ""
+    page = 0
+    while True:
+        page += 1
+        cmd = ["chat", "list-all-conversations", "--limit", "100", "-y"]
+        if cursor:
+            cmd += ["--cursor", cursor]
+        data = dws_call(cmd, timeout=30)
+        if not data or data.get("_error") or "error" in data:
+            if page == 1 and existing_map:
+                log("动态获取会话列表失败，使用本地缓存", "WARN")
+                return list(existing_map.values())
+            elif page == 1:
+                return []
+            break  # 中途失败，使用已拉取的数据
 
-    dynamic_convs = data.get("conversations", [])
+        result = data.get("result", data)
+        batch = result.get("conversations", result.get("conversationList", []))
+        if not batch:
+            break
+        dynamic_convs.extend(batch)
+
+        has_more = result.get("hasMore", False)
+        next_cursor = result.get("nextCursor", "")
+        if not has_more or not next_cursor:
+            break
+        cursor = next_cursor
+        time.sleep(REQUEST_INTERVAL)
+
+    if page > 1:
+        log(f"  会话列表拉取: {page} 页, 共 {len(dynamic_convs)} 个会话")
+
     new_count = 0
     for dc in dynamic_convs:
         cid = dc.get("openConversationId", "")
@@ -2689,16 +2717,16 @@ def sync_calendar(days_back=7, days_forward=7, full=False):
 # ============================================================
 
 def fetch_todo_tasks(status=None, page=1, size=20):
-    """获取待办列表（API 最大 size=20）"""
+    """获取待办列表（使用 todo task list 标准接口，API 最大 size=20）"""
     size = min(size, 20)
-    cmd = ["todo", "+get-my-tasks", "--size", str(size), "--page", str(page), "-y"]
+    cmd = ["todo", "task", "list", "--page", str(page), "--size", str(size), "-y"]
     if status is not None:
         cmd += ["--status", str(status).lower()]
     data = dws_call(cmd, timeout=30)
     if not data:
         return [], 0
-    todos = data.get("todos", [])
-    count = data.get("count", len(todos))
+    todos = data.get("todos", data.get("result", {}).get("todos", []))
+    count = data.get("count", data.get("result", {}).get("count", len(todos)))
     return todos, count
 
 
@@ -2835,12 +2863,78 @@ def fetch_minutes_list(limit=20, cursor=""):
     return minutes, next_cursor
 
 
-def fetch_minute_detail(task_uuid, artifacts="basic,summary,keywords,todos"):
-    """获取单条听记详情（不含逐字稿以节省空间，需要时可加 transcript）"""
-    cmd = ["minutes", "+detail", "--id", task_uuid,
-           "--artifacts", artifacts, "-y"]
-    data = dws_call(cmd, timeout=60)
-    return data
+def fetch_minute_detail(task_uuid, include_transcript=False):
+    """获取单条听记详情，分步调用 get info/summary/keywords/todos 组装完整数据。
+    相比旧 +detail 接口，使用标准化子命令，兼容性更好。
+    """
+    result = {}
+
+    # 1. 基本信息（必须）
+    info = dws_call(["minutes", "get", "info", "--id", task_uuid, "-y"], timeout=30)
+    if info and not info.get("_error"):
+        result["basic"] = info.get("result", info)
+    else:
+        return None  # 基本信息获取失败，跳过
+
+    # 2. 摘要
+    summary = dws_call(["minutes", "get", "summary", "--id", task_uuid, "-y"], timeout=30)
+    if summary and not summary.get("_error"):
+        result["summary"] = summary.get("result", summary)
+
+    # 3. 关键词
+    keywords = dws_call(["minutes", "get", "keywords", "--id", task_uuid, "-y"], timeout=30)
+    if keywords and not keywords.get("_error"):
+        result["keywords"] = keywords.get("result", keywords)
+
+    # 4. 待办
+    todos = dws_call(["minutes", "get", "todos", "--id", task_uuid, "-y"], timeout=30)
+    if todos and not todos.get("_error"):
+        result["todos"] = todos.get("result", todos)
+
+    # 5. 逐字稿（可选，数据量大）
+    if include_transcript:
+        transcript_paragraphs = []
+        t_cursor = ""
+        while True:
+            t_cmd = ["minutes", "get", "transcription", "--id", task_uuid, "-y"]
+            if t_cursor:
+                t_cmd += ["--next-token", t_cursor]
+            t_data = dws_call(t_cmd, timeout=60)
+            if not t_data or t_data.get("_error"):
+                break
+            t_result = t_data.get("result", t_data)
+            paragraphs = t_result.get("paragraphs", [])
+            transcript_paragraphs.extend(paragraphs)
+            t_next = t_result.get("nextToken", "")
+            if not t_next or not paragraphs:
+                break
+            t_cursor = t_next
+            time.sleep(REQUEST_INTERVAL)
+        result["transcript"] = {"paragraphs": transcript_paragraphs}
+
+    return result
+
+
+def fetch_minutes_batch(uuids):
+    """使用 minutes get batch 批量获取听记基本信息（每次最多 30 条）。
+    返回 {uuid: basicInfo, ...}
+    """
+    if not uuids:
+        return {}
+    result = {}
+    # 分批处理，每批 30 条
+    for i in range(0, len(uuids), 30):
+        batch = uuids[i:i + 30]
+        ids_str = ",".join(batch)
+        data = dws_call(["minutes", "get", "batch", "--ids", ids_str, "-y"], timeout=60)
+        if data and not data.get("_error"):
+            details = data.get("result", data).get("minutesDetails", [])
+            for d in details:
+                uid = d.get("taskUuid", d.get("uuid", d.get("id", "")))
+                if uid:
+                    result[uid] = d
+        time.sleep(REQUEST_INTERVAL)
+    return result
 
 
 def sync_minutes(include_transcript=False):
@@ -2885,10 +2979,6 @@ def sync_minutes(include_transcript=False):
     now = datetime.now()
     ts = now.strftime("%Y%m%d_%H%M%S")
 
-    artifacts = "basic,summary,keywords,todos"
-    if include_transcript:
-        artifacts += ",transcript"
-
     synced_count = 0
     skipped_count = 0
     error_count = 0
@@ -2904,7 +2994,7 @@ def sync_minutes(include_transcript=False):
             continue
 
         log(f"  获取详情: {title[:30]}...")
-        detail = fetch_minute_detail(task_uuid, artifacts=artifacts)
+        detail = fetch_minute_detail(task_uuid, include_transcript=include_transcript)
         if not detail:
             error_count += 1
             log(f"    获取失败", "WARN")
@@ -3142,6 +3232,7 @@ def sync_contacts():
             detail_rows.append({
                 "userId": uid,
                 "name": info["name"],
+                "flowerName": "",
                 "jobNumber": "",
                 "title": "",
                 "email": "",
@@ -3170,6 +3261,7 @@ def sync_contacts():
         detail_rows.append({
             "userId": model.get("orgUserId", uid),
             "name": model.get("orgUserName", info["name"]),
+            "flowerName": model.get("flowerName", ""),
             "jobNumber": model.get("jobNumber", ""),
             "title": model.get("orgTitle", ""),
             "email": model.get("orgAuthEmail", ""),
@@ -3190,7 +3282,7 @@ def sync_contacts():
     ts = now.strftime("%Y%m%d_%H%M%S")
     csv_path = CONTACTS_EXPORT_DIR / f"contacts_{ts}.csv"
 
-    fieldnames = ["userId", "name", "jobNumber", "title", "email", "mobile",
+    fieldnames = ["userId", "name", "flowerName", "jobNumber", "title", "email", "mobile",
                   "departments", "orgName", "isAdmin"]
     with open(csv_path, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)

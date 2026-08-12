@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>钉钉聊天记录浏览</title>
-  <link rel="stylesheet" href="styles.css?v=9" />
+  <link rel="stylesheet" href="styles.css?v=10" />
 </head>
 <body>
   <div id="file-warning" style="display:none;">
@@ -37,13 +37,10 @@ python -m http.server 8777 --bind 127.0.0.1</code></pre>
         </div>
       </div>
       <ul id="conv-list" class="conv-list"></ul>
-      <div class="sidebar-footer" id="sidebar-footer">
-        <div class="oo-setting">
-          <label class="oo-label" for="oo-url">OnlyOffice 地址</label>
-          <input id="oo-url" class="oo-url-input" type="text" placeholder="http://10.10.10.6:8080" spellcheck="false" autocomplete="off" />
+        <div class="sidebar-footer" id="sidebar-footer">
+          <button class="settings-entry" id="settings-entry" type="button">⚙ 系统设置</button>
+          <div class="footer-ver" id="footer-ver">v0.1</div>
         </div>
-        <div class="footer-ver" id="footer-ver">v0.1</div>
-      </div>
     </aside>
 
     <!-- 右侧：聊天窗口 -->
@@ -60,11 +57,12 @@ python -m http.server 8777 --bind 127.0.0.1</code></pre>
               <button class="chat-tab" data-tab="schedule">日程</button>
               <button class="chat-tab" data-tab="minutes">听记</button>
               <button class="chat-tab" data-tab="todo">待办</button>
+              <button class="chat-tab" data-tab="contacts">通讯录</button>
             </div>
           </div>
           <div class="chat-header-right">
             <div class="chat-search-box">
-              <input id="chat-search" type="text" placeholder="搜索聊天记录…" autocomplete="off" />
+              <input id="chat-search" type="text" placeholder="搜索文字，或输入日期如 2026-07-20 / 7-20" autocomplete="off" />
             </div>
           </div>
         </header>
@@ -124,6 +122,13 @@ python -m http.server 8777 --bind 127.0.0.1</code></pre>
             </div>
             <div class="todo-list" id="todo-list"></div>
           </div>
+          <div id="panel-contacts" class="chat-panel hidden">
+            <div class="panel-toolbar">
+              <input id="contacts-search" class="panel-search" type="text" placeholder="搜索姓名 / 拼音 / 首字母 / 部门 / 职位…" autocomplete="off" />
+              <div class="contacts-count" id="contacts-count"></div>
+            </div>
+            <div class="contacts-list" id="contacts-list"></div>
+          </div>
         </div>
       </main>
   </div>
@@ -138,12 +143,32 @@ python -m http.server 8777 --bind 127.0.0.1</code></pre>
     </div>
   </div>
 
+  <div id="settings-modal" class="settings-modal hidden" aria-hidden="true">
+    <div class="settings-box">
+      <div class="settings-head">
+        <div class="settings-title">系统设置</div>
+        <button class="settings-close" id="settings-close" type="button" aria-label="关闭">×</button>
+      </div>
+      <div class="settings-body">
+        <div class="settings-row">
+          <label for="set-oo-url">OnlyOffice 地址</label>
+          <input id="set-oo-url" class="settings-input" type="text" placeholder="http://10.10.10.6:8080" spellcheck="false" autocomplete="off" />
+        </div>
+        <div class="settings-row">
+          <label for="set-oo-secret">JWT 密钥</label>
+          <input id="set-oo-secret" class="settings-input" type="password" placeholder="OnlyOffice 开启令牌保护时的服务端密钥" autocomplete="off" />
+        </div>
+        <div class="settings-hint">在线预览文件需用 <b>http://10.10.10.10:8080/_viewer/</b> 打开本页，OnlyOffice 才能拉取文件；JWT 密钥仅在 OnlyOffice 开启令牌保护时填写。</div>
+      </div>
+    </div>
+  </div>
+
   <script>
     if (location.protocol === 'file:') {
       document.getElementById('app').style.display = 'none';
       document.getElementById('file-warning').style.display = 'block';
     }
   </script>
-  <script src="app.js?v=13"></script>
+  <script src="app.js?v=18"></script>
 </body>
 </html>

@@ -1,0 +1,1040 @@
+{
+  "arguments": [],
+  "errorCode": null,
+  "errorMsg": null,
+  "result": {
+    "conversationMessagesList": [
+      {
+        "messages": [
+          {
+            "content": "内部大群传播风险\n所属企业: 东方日升新能源股份有限公司\n触发人员: 靳美丽\n所属部门: 光伏BU-光伏制造板块-第二事业部-滁州基地-综合管理部-行政部-行政事务组\n指标名称: 内部大群传播风险\n指标描述: 在一个24小时内创建的内部大群里发送了文件、图片或链接\n触发规则: 内部大群传播风险\n风险等级: 高\n触发时间: 2026-03-23 14:54:41\n事件状态: 未处理\n事件详情\n![image]($iAELAqNwbmcDBgTNArUFzNgG2gAjhAGkITY_UwKqkAqFpEB9oDw4oQPPAAABixiKW30EzgB7QBAHAAgA)\n[dingtalk://dingtalkclient/page/link?url=https%3A%2F%2Fh5.dingtalk.com%2FuserProtocolAuth%2Findex.html%23%2Fv2%2FeventDetail%3Fuuid%3D38376555-ccfb-4ce0-ab74-ad334f4fd2f4%26corpId%3Ddingc78529e95ab330a135c2f4657eb6378f\u0026pc_slide=true](dingtalk://dingtalkclient/page/link?url=https%3A%2F%2Fh5.dingtalk.com%2FuserProtocolAuth%2Findex.html%23%2Fv2%2FeventDetail%3Fuuid%3D38376555-ccfb-4ce0-ab74-ad334f4fd2f4%26corpId%3Ddingc78529e95ab330a135c2f4657eb6378f\u0026pc_slide=true)",
+            "createTime": "2026-03-23 14:54:41",
+            "openConversationId": "cid5CrIWvIbrFsyRrsIGxnHXDpvEgPpShCdiug5FmK9r9I=",
+            "openMessageId": "msgpI+CDZvAH8dhxv1PQ6B/6g==",
+            "sender": "专属管家",
+            "senderOpenDingTalkId": "D28YQoZbTxpwJEBPfiSvCpC6jRiPDK4kwiSv"
+          },
+          {
+            "content": "内部大群传播风险\n所属企业: 东方日升新能源股份有限公司\n触发人员: Andres Pinilla\n所属部门: 储能BU-双一力（宁波）-营销中心-海外营销中心-EMEA区-西欧区\n指标名称: 内部大群传播风险\n指标描述: 在一个24小时内创建的内部大群里发送了文件、图片或链接\n触发规则: 内部大群传播风险\n风险等级: 高\n触发时间: 2026-03-13 16:56:08\n事件状态: 未处理\n事件详情\n![image]($iAELAqNwbmcDBgTNArUFzNgG2gAjhAGkITY_UwKqkAqFpEB9oDw4oQPPAAABixiKW30EzgB7QBAHAAgA)\n[dingtalk://dingtalkclient/page/link?url=https%3A%2F%2Fh5.dingtalk.com%2FuserProtocolAuth%2Findex.html%23%2Fv2%2FeventDetail%3Fuuid%3Dc0b90bd8-b68e-48ba-ad6c-bac4be93ed5c%26corpId%3Ddingc78529e95ab330a135c2f4657eb6378f\u0026pc_slide=true](dingtalk://dingtalkclient/page/link?url=https%3A%2F%2Fh5.dingtalk.com%2FuserProtocolAuth%2Findex.html%23%2Fv2%2FeventDetail%3Fuuid%3Dc0b90bd8-b68e-48ba-ad6c-bac4be93ed5c%26corpId%3Ddingc78529e95ab330a135c2f4657eb6378f\u0026pc_slide=true)",
+            "createTime": "2026-03-13 16:56:08",
+            "openConversationId": "cid5CrIWvIbrFsyRrsIGxnHXDpvEgPpShCdiug5FmK9r9I=",
+            "openMessageId": "msgnl66YIhxN/C34tohgDmLDQ==",
+            "sender": "专属管家",
+            "senderOpenDingTalkId": "D28YQoZbTxpwJEBPfiSvCpC6jRiPDK4kwiSv"
+          },
+          {
+            "content": "内部大群传播风险\n所属企业: 东方日升新能源股份有限公司\n触发人员: 余燕红\n所属部门: 光伏BU-光伏制造板块-第二事业部-滁州基地-组件滁州基地-生产部\n指标名称: 内部大群传播风险\n指标描述: 在一个24小时内创建的超过50人的内部群里发送了文件、图片、链接\n触发规则: 内部大群传播风险\n风险等级: 高\n触发时间: 2026-02-02 18:25:19\n事件状态: 未处理\n事件详情\n![image]($iAELAqNwbmcDBgTNArUFzNgG2gAjhAGkITY_UwKqkAqFpEB9oDw4oQPPAAABixiKW30EzgB7QBAHAAgA)\n[dingtalk://dingtalkclient/page/link?url=https%3A%2F%2Fh5.dingtalk.com%2FuserProtocolAuth%2Findex.html%23%2Fv2%2FeventDetail%3Fuuid%3D75b43c61-9e8e-4b96-af8d-8bb9f8dbd04c%26corpId%3Ddingc78529e95ab330a135c2f4657eb6378f\u0026pc_slide=true](dingtalk://dingtalkclient/page/link?url=https%3A%2F%2Fh5.dingtalk.com%2FuserProtocolAuth%2Findex.html%23%2Fv2%2FeventDetail%3Fuuid%3D75b43c61-9e8e-4b96-af8d-8bb9f8dbd04c%26corpId%3Ddingc78529e95ab330a135c2f4657eb6378f\u0026pc_slide=true)",
+            "createTime": "2026-02-02 18:25:19",
+            "openConversationId": "cid5CrIWvIbrFsyRrsIGxnHXDpvEgPpShCdiug5FmK9r9I=",
+            "openMessageId": "msgcSN3igo7sZGbAZZZSCRBiw==",
+            "sender": "专属管家",
+            "senderOpenDingTalkId": "D28YQoZbTxpwJEBPfiSvCpC6jRiPDK4kwiSv"
+          }
+        ],
+        "openConversationId": "cid5CrIWvIbrFsyRrsIGxnHXDpvEgPpShCdiug5FmK9r9I=",
+        "singleChat": true,
+        "title": "专属管家"
+      },
+      {
+        "messages": [
+          {
+            "content": "[图片消息](mediaId=@lALPD2HdBdatdFFozQII)\n图片内容：\n\u003cimageContent\u003e\n11\n\u003c/imageContent\u003e\n【云监控】\n通知中心报警, UPGRADED_产品过期下 发生10次报警，最高级别 INFO\n\n\n\u003e- 用户名: 东方日升新***有限公司\n\u003e- 用户Id: 199482***76854\n\u003e- 开始时间:    2026-03-23 07:28:44 CST \n\u003e- 最近触发时间:  2026-03-23 09:02:10 CST\n\n\u003e- 报警抑制: 直接通知___\n\n___\n\u003e- 策略名称: [UPGRADED_产品过期](https://cloudmonitor.console.aliyun.com/notify-strategy/strategy?uuid=9a24e990d6b94b039dd932233d00b036)\n\u003e- 相关报警资源：\n___\n\u003e- 报警级别: INFO\n\u003e- 报警时间:  2026-03-23 09:02:10 CST \n\u003e- 服务名称: 配置审计\n\u003e- 实例名称: cnfs-nas\n\u003e- 影响资源: acs:nas:cn-hangzhou:1994820480176854:filesystem/07a7f4acb3\n\u003e- 事件名称: 不合规事件\n\u003e- 地域: 华东1(杭州)(cn-hangzhou)\n\u003e- 详细内容: \n\u003e\u003e- annotation: {\"configuration\":\"\",\"desiredValue\":\"\",\"operator\":\"IsNotEmpty\",\"property\":\"$.MountTargets\",\"reason\":\"FeaturePath not exist\"}\n\u003e\u003e- accountId: 1994820480176854\n\u003e\u003e- riskLevel: Info\n\u003e\u003e- lastNonCompliantRecordTimestamp: 1774227729823\n\u003e\u003e- requestId: 8475d83d-450e-4401-a6e9-5f0e22770b73\n\u003e\u003e- dataType: NonCompliantNotification\n\u003e\u003e- eventName: NonCompliant\n\u003e\u003e- evaluationResultIdentifier: {\"orderingTimestamp\":1774227729782,\"evaluationResultQualifier\":{\"resourceId\":\"07a7f4acb3\",\"configRuleName\":\"云治理检测服务-NAS文件系统闲置检测\",\"sourceIdentifier\":\"nas-filesystem-idle-check\",\"configRuleId\":\"cr-p08d561c92d600989c91\",\"serviceChannel\":\"LandingZone\",\"captureTime\":1774227729782,\"helpUrls\":\"https://help.aliyun.com/document_detail/27518.html\",\"resourceName\":\"cnfs-nas\",\"resourceTags\":\"{\\\"cnfs-id\\\":[\\\"dbe3a072-34ed-4714-9299-f64d51d46826\\\"],\\\"cluster-id.ack.aliyun.com\\\":[\\\"c3106ed1763b54bedbb96a7ee6fa45703\\\"],\\\"createdby\\\":[\\\"alibabacloud-csi-plugin\\\"]}\",\"compliancePackId\":\"cp-qe0c561c92d60061df5c\",\"configRuleArn\":\"acs:config::1994820480176854:rule/cr-p08d561c92d600989c91\",\"regionId\":\"cn-hangzhou\",\"resourceArn\":\"acs:nas:cn-hangzhou:1994820480176854:filesystem/07a7f4acb3\",\"resourceGroupId\":\"rg-acfm4okl4acjfvq\",\"resourceOwnerId\":1994820480176854,\"resourceType\":\"ACS::NAS::FileSystem\"}}\n\u003e\u003e- eventType: ResourceCompliance\n\u003e\u003e- invokingEventMessageType: ConfigurationItemChangeNotification\n\u003e\u003e- notificationCreationTime: 1774227729865\n\u003e\u003e- complianceType: NON_COMPLIANT\n\n\u003e- 事件含义: [事件含义](https://help.aliyun.com/document_detail/167388.html)\n\n\n[详情查看](https://cloudmonitor.console.aliyun.com/notify-strategy/strategy?uuid=9a24e990d6b94b039dd932233d00b036)",
+            "createTime": "2026-03-23 09:02:12",
+            "openConversationId": "cidQdQo8s+KhJWkCkmQGieLhA==",
+            "openMessageId": "msgxedQXs7E5nUzwrDzffSzBA==",
+            "sender": "东方日升集团账号",
+            "senderOpenDingTalkId": "D28YQoZbTxpwZvdZ6VSQ3CRQAOrYGb6KK"
+          }
+        ],
+        "openConversationId": "cidQdQo8s+KhJWkCkmQGieLhA==",
+        "singleChat": false,
+        "title": "阿里云通知"
+      },
+      {
+        "messages": [
+          {
+            "content": "又是新一周啦，请各位负责人尽快提交今日例会汇报文件，并更新ONES工作项进度哦，谢谢合作！",
+            "createTime": "2026-03-23 08:10:03",
+            "openConversationId": "cidniIfZhIhk5SFSlZ28sZTCg==",
+            "openMessageId": "msgDde2T2HQmUjLeQOxiOYqQg==",
+            "sender": "AI小钉",
+            "senderOpenDingTalkId": "D28YQoZbTxpxhp8QaNET60gQLPYB5VuCk"
+          },
+          {
+            "content": "又是新一周啦，请各位负责人尽快提交今日例会汇报文件，并更新ONES工作项进度哦，谢谢合作！",
+            "createTime": "2026-03-19 08:10:02",
+            "openConversationId": "cidniIfZhIhk5SFSlZ28sZTCg==",
+            "openMessageId": "msgcPbCKlz3oJLqTUfz4taaYA==",
+            "sender": "AI小钉",
+            "senderOpenDingTalkId": "D28YQoZbTxpxhp8QaNET60gQLPYB5VuCk"
+          },
+          {
+            "content": "又是新一周啦，请各位负责人尽快提交今日例会汇报文件，并更新ONES工作项进度哦，谢谢合作！",
+            "createTime": "2026-03-16 08:10:03",
+            "openConversationId": "cidniIfZhIhk5SFSlZ28sZTCg==",
+            "openMessageId": "msgw9TE0thCAEc/BVC/EOckIQ==",
+            "sender": "AI小钉",
+            "senderOpenDingTalkId": "D28YQoZbTxpxhp8QaNET60gQLPYB5VuCk"
+          },
+          {
+            "content": "又是新一周啦，请各位负责人尽快提交今日例会汇报文件，并更新ONES工作项进度哦，谢谢合作！",
+            "createTime": "2026-03-12 08:10:03",
+            "openConversationId": "cidniIfZhIhk5SFSlZ28sZTCg==",
+            "openMessageId": "msg1Y97FAa0guPk+u+h/ao7zg==",
+            "sender": "AI小钉",
+            "senderOpenDingTalkId": "D28YQoZbTxpxhp8QaNET60gQLPYB5VuCk"
+          },
+          {
+            "content": "又是新一周啦，请各位负责人尽快提交今日例会汇报文件，并更新ONES工作项进度哦，谢谢合作！",
+            "createTime": "2026-03-09 08:10:03",
+            "openConversationId": "cidniIfZhIhk5SFSlZ28sZTCg==",
+            "openMessageId": "msgJ1FlQ+nnoljNnAFtzUIQOQ==",
+            "sender": "AI小钉",
+            "senderOpenDingTalkId": "D28YQoZbTxpxhp8QaNET60gQLPYB5VuCk"
+          },
+          {
+            "content": "又是新一周啦，请各位负责人尽快提交今日例会汇报文件，并更新ONES工作项进度哦，谢谢合作！",
+            "createTime": "2026-03-05 08:10:02",
+            "openConversationId": "cidniIfZhIhk5SFSlZ28sZTCg==",
+            "openMessageId": "msgste8NUbClwToY2fL+K49qg==",
+            "sender": "AI小钉",
+            "senderOpenDingTalkId": "D28YQoZbTxpxhp8QaNET60gQLPYB5VuCk"
+          },
+          {
+            "content": "又是新一周啦，请各位负责人尽快提交今日例会汇报文件，并更新ONES工作项进度哦，谢谢合作！",
+            "createTime": "2026-03-02 08:10:03",
+            "openConversationId": "cidniIfZhIhk5SFSlZ28sZTCg==",
+            "openMessageId": "msgs9K6iZe5QnF2XWg7JYPIKQ==",
+            "sender": "AI小钉",
+            "senderOpenDingTalkId": "D28YQoZbTxpxhp8QaNET60gQLPYB5VuCk"
+          },
+          {
+            "content": "又是新一周啦，请各位负责人尽快提交今日例会汇报文件，并更新ONES工作项进度哦，谢谢合作！",
+            "createTime": "2026-02-26 08:10:02",
+            "openConversationId": "cidniIfZhIhk5SFSlZ28sZTCg==",
+            "openMessageId": "msgJn6zuhjj0G1+KOU2NN8nww==",
+            "sender": "AI小钉",
+            "senderOpenDingTalkId": "D28YQoZbTxpxhp8QaNET60gQLPYB5VuCk"
+          },
+          {
+            "content": "又是新一周啦，请各位负责人尽快提交今日例会汇报文件，并更新ONES工作项进度哦，谢谢合作！",
+            "createTime": "2026-02-23 08:10:02",
+            "openConversationId": "cidniIfZhIhk5SFSlZ28sZTCg==",
+            "openMessageId": "msgQsC81KmdVpuUAfLlRq9yvQ==",
+            "sender": "AI小钉",
+            "senderOpenDingTalkId": "D28YQoZbTxpxhp8QaNET60gQLPYB5VuCk"
+          },
+          {
+            "content": "又是新一周啦，请各位负责人尽快提交今日例会汇报文件，并更新ONES工作项进度哦，谢谢合作！",
+            "createTime": "2026-02-19 08:10:02",
+            "openConversationId": "cidniIfZhIhk5SFSlZ28sZTCg==",
+            "openMessageId": "msgBse0lK3xNmSZ5VIrF7gBvQ==",
+            "sender": "AI小钉",
+            "senderOpenDingTalkId": "D28YQoZbTxpxhp8QaNET60gQLPYB5VuCk"
+          },
+          {
+            "content": "又是新一周啦，请各位负责人尽快提交今日例会汇报文件，并更新ONES工作项进度哦，谢谢合作！",
+            "createTime": "2026-02-16 08:10:03",
+            "openConversationId": "cidniIfZhIhk5SFSlZ28sZTCg==",
+            "openMessageId": "msgNO7WbWD45AMy0y+qmVJcQg==",
+            "sender": "AI小钉",
+            "senderOpenDingTalkId": "D28YQoZbTxpxhp8QaNET60gQLPYB5VuCk"
+          },
+          {
+            "content": "又是新一周啦，请各位负责人尽快提交今日例会汇报文件，并更新ONES工作项进度哦，谢谢合作！",
+            "createTime": "2026-02-12 08:10:02",
+            "openConversationId": "cidniIfZhIhk5SFSlZ28sZTCg==",
+            "openMessageId": "msgDCR5jBV2mlrvq85tKAOhow==",
+            "sender": "AI小钉",
+            "senderOpenDingTalkId": "D28YQoZbTxpxhp8QaNET60gQLPYB5VuCk"
+          },
+          {
+            "content": "【 1 月及2月工作月报提醒】[魔法棒]\n各位部门负责人，早上好！\n       为进一步提升团队协作效率，确保各项工作稳步推进、如期达成既定目标，烦请大家**梳理总结 1 月及2月工作完成情况**，并同步规划3月重点工作内容。\n\n请将完成的月报[文档]，于** ****2 月 12日放假前**上传至群文件夹，感谢大家的配合！[比心]@所有人",
+            "createTime": "2026-02-09 09:23:42",
+            "openConversationId": "cidniIfZhIhk5SFSlZ28sZTCg==",
+            "openMessageId": "msgq9e28tlCU2NxJ6qU0/aTmw==",
+            "sender": "王瑾",
+            "senderOpenDingTalkId": "DoW4gTBnOYPiiTTVvsdNYk3x76eXgzZR94"
+          }
+        ],
+        "openConversationId": "cidniIfZhIhk5SFSlZ28sZTCg==",
+        "singleChat": false,
+        "title": "例会群-流程与信息中心"
+      },
+      {
+        "messages": [
+          {
+            "content": "[文件] 关于规范使用公司网络及面板的公告.docx",
+            "createTime": "2026-03-20 14:39:56",
+            "openConversationId": "cidh5yW33/2DlN1L8luRgVbTkX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msg9FH0z7o0Td6Ev/B4zYpxRw==",
+            "sender": "徐建锋",
+            "senderOpenDingTalkId": "DluiPkrcmf72x1iirzii7w7gZh76eXgzZR94"
+          }
+        ],
+        "openConversationId": "cidh5yW33/2DlN1L8luRgVbTkX5wby+FqFIi79iEaKOEBc=",
+        "singleChat": true,
+        "title": "徐建锋"
+      },
+      {
+        "messages": [
+          {
+            "content": "[文件] 东方日升2025年ESG定量数据收集清单 - 信息安全与隐私保护（流程与信息中心）-汪德嘉.xlsx",
+            "createTime": "2026-03-19 16:21:29",
+            "openConversationId": "cid89aDTGKbEQvyqC56J3LFyUX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msg7Wf3UuvJcJWlvFaoz29MiQ==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 20260303_安全隐患整改报告_宁海县公安局网安大队_v0.1.docx",
+            "createTime": "2026-03-04 13:06:45",
+            "openConversationId": "cid89aDTGKbEQvyqC56J3LFyUX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msg3VBiKTmNCUawssDX6UfevQ==",
+            "sender": "陈鑫",
+            "senderOpenDingTalkId": "D0grI2wfH28n8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 信息安全与数字化_数据补充_2026030412.doc",
+            "createTime": "2026-03-04 13:01:23",
+            "openConversationId": "cid89aDTGKbEQvyqC56J3LFyUX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgtwfLZ64C2Bl3PtSj/17ynw==",
+            "sender": "陈鑫",
+            "senderOpenDingTalkId": "D0grI2wfH28n8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 信息安全与数字化_数据补充_2026030411.doc",
+            "createTime": "2026-03-04 11:44:58",
+            "openConversationId": "cid89aDTGKbEQvyqC56J3LFyUX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msg/Nw76sOdm0P8JBl7RBBp1g==",
+            "sender": "陈鑫",
+            "senderOpenDingTalkId": "D0grI2wfH28n8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 信息安全与数字化.doc",
+            "createTime": "2026-03-04 10:38:43",
+            "openConversationId": "cid89aDTGKbEQvyqC56J3LFyUX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgCadF+uEwXRWJSWC6CR6BBQ==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          }
+        ],
+        "openConversationId": "cid89aDTGKbEQvyqC56J3LFyUX5wby+FqFIi79iEaKOEBc=",
+        "singleChat": true,
+        "title": "陈鑫"
+      },
+      {
+        "messages": [
+          {
+            "content": "[文件] 东方日升暴露面资产梳理报告.doc",
+            "createTime": "2026-03-19 15:59:48",
+            "openConversationId": "cid77pSbsS8yRq5L10zswbJpQ==",
+            "openMessageId": "msglV92+1Z1J7jcJrfJ4jItLA==",
+            "sender": "郑晓阳",
+            "senderOpenDingTalkId": "D28YQoZbTxpyTv6OsCCiPMtAVmNa1d9dCy"
+          },
+          {
+            "content": "[文件] 东方日升暴露面资产清单.xlsx",
+            "createTime": "2026-03-19 15:59:15",
+            "openConversationId": "cid77pSbsS8yRq5L10zswbJpQ==",
+            "openMessageId": "msghIOD/4kA2FbhmiowK7sd2w==",
+            "sender": "郑晓阳",
+            "senderOpenDingTalkId": "D28YQoZbTxpyTv6OsCCiPMtAVmNa1d9dCy"
+          },
+          {
+            "content": "[文件] 亚信授权_亚信安刻导出.xls",
+            "createTime": "2026-03-13 14:12:20",
+            "openConversationId": "cid77pSbsS8yRq5L10zswbJpQ==",
+            "openMessageId": "msg/RqpUGbHDcMB5Bt0vFIoyw==",
+            "sender": "陈鑫",
+            "senderOpenDingTalkId": "D0grI2wfH28n8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 亚信授权_参考合同收集.xlsx",
+            "createTime": "2026-03-13 14:12:20",
+            "openConversationId": "cid77pSbsS8yRq5L10zswbJpQ==",
+            "openMessageId": "msgyuU6xJ45aDJA8Vc9kQPl5Q==",
+            "sender": "陈鑫",
+            "senderOpenDingTalkId": "D0grI2wfH28n8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "渗透测试复测报告已上传群文件",
+            "createTime": "2026-03-13 10:19:17",
+            "openConversationId": "cid77pSbsS8yRq5L10zswbJpQ==",
+            "openMessageId": "msgwu1j2/UoPeI1ajxNYteenA==",
+            "sender": "郑晓阳",
+            "senderOpenDingTalkId": "D28YQoZbTxpyTv6OsCCiPMtAVmNa1d9dCy"
+          },
+          {
+            "content": "[文件] goodzip沙箱分析报告.pdf",
+            "createTime": "2026-03-12 11:40:11",
+            "openConversationId": "cid77pSbsS8yRq5L10zswbJpQ==",
+            "openMessageId": "msgyOYjGm2HEBf7Dw2MhuNnaw==",
+            "sender": "郑晓阳",
+            "senderOpenDingTalkId": "D28YQoZbTxpyTv6OsCCiPMtAVmNa1d9dCy"
+          },
+          {
+            "content": "[文件] 日升分子公司-参考版.xlsx",
+            "createTime": "2026-03-11 14:43:17",
+            "openConversationId": "cid77pSbsS8yRq5L10zswbJpQ==",
+            "openMessageId": "msguktxYLfbzp2UtvBeaLo2IQ==",
+            "sender": "郑晓阳",
+            "senderOpenDingTalkId": "D28YQoZbTxpyTv6OsCCiPMtAVmNa1d9dCy"
+          },
+          {
+            "content": "[文件] 20260310_安全隐患整改报告_宁海县公安局网安大队_v1.0.pdf",
+            "createTime": "2026-03-10 08:47:26",
+            "openConversationId": "cid77pSbsS8yRq5L10zswbJpQ==",
+            "openMessageId": "msgAmZnPYxzCAG2p+CxPjMM3A==",
+            "sender": "陈鑫",
+            "senderOpenDingTalkId": "D0grI2wfH28n8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 企业上报_2026030915.docx",
+            "createTime": "2026-03-09 15:56:34",
+            "openConversationId": "cid77pSbsS8yRq5L10zswbJpQ==",
+            "openMessageId": "msg5P97z4k0ySbygqyD07cniQ==",
+            "sender": "陈鑫",
+            "senderOpenDingTalkId": "D0grI2wfH28n8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] dns_log.txt",
+            "createTime": "2026-03-09 13:51:47",
+            "openConversationId": "cid77pSbsS8yRq5L10zswbJpQ==",
+            "openMessageId": "msg3UlVzOgZy0hIffgUy3GKfQ==",
+            "sender": "郑晓阳",
+            "senderOpenDingTalkId": "D28YQoZbTxpyTv6OsCCiPMtAVmNa1d9dCy"
+          },
+          {
+            "content": "[文件] dns.txt",
+            "createTime": "2026-03-09 13:50:09",
+            "openConversationId": "cid77pSbsS8yRq5L10zswbJpQ==",
+            "openMessageId": "msg8453DtB6LN6QV6lo7QnsXQ==",
+            "sender": "郑晓阳",
+            "senderOpenDingTalkId": "D28YQoZbTxpyTv6OsCCiPMtAVmNa1d9dCy"
+          },
+          {
+            "content": "[文件] dnspacp.zip",
+            "createTime": "2026-03-09 13:49:25",
+            "openConversationId": "cid77pSbsS8yRq5L10zswbJpQ==",
+            "openMessageId": "msg9omEBXlnh/IkiFlbKWacVQ==",
+            "sender": "郑晓阳",
+            "senderOpenDingTalkId": "D28YQoZbTxpyTv6OsCCiPMtAVmNa1d9dCy"
+          },
+          {
+            "content": "[文件] 企业上报_20260309.docx",
+            "createTime": "2026-03-09 13:02:30",
+            "openConversationId": "cid77pSbsS8yRq5L10zswbJpQ==",
+            "openMessageId": "msgx32GEvnXix7kYkE2cOY26g==",
+            "sender": "陈鑫",
+            "senderOpenDingTalkId": "D0grI2wfH28n8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 企业上报.docx",
+            "createTime": "2026-03-06 14:46:07",
+            "openConversationId": "cid77pSbsS8yRq5L10zswbJpQ==",
+            "openMessageId": "msgVO7LwnePINnfZL6oejoS2A==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 东方日升新能源股份有限公司网络异常行为通报.doc",
+            "createTime": "2026-03-03 09:53:07",
+            "openConversationId": "cid77pSbsS8yRq5L10zswbJpQ==",
+            "openMessageId": "msgXd/3LJPWovF9JJeO1+wwfw==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[图片消息](mediaId=@lQLPJx1m04dqVpXNBBrNBnSwapKkA2OaIMcJfN5LINEuAA)已修复，问题原因apache配置文件开启了目录浏览  已关闭\n443端口DocumentRoot配置未指向应用目录  已修改",
+            "createTime": "2026-03-02 13:23:15",
+            "openConversationId": "cid77pSbsS8yRq5L10zswbJpQ==",
+            "openMessageId": "msg36PepvHgYObPSB1GBtsZ0Q==",
+            "sender": "郑晓阳",
+            "senderOpenDingTalkId": "D28YQoZbTxpyTv6OsCCiPMtAVmNa1d9dCy"
+          }
+        ],
+        "openConversationId": "cid77pSbsS8yRq5L10zswbJpQ==",
+        "singleChat": false,
+        "title": "【信息安全部】工作沟通同步群"
+      },
+      {
+        "messages": [
+          {
+            "content": "[文件] 东方日升2025年ESG定量数据收集清单 - 信息安全与隐私保护（流程与信息中心）-汪德嘉.xlsx",
+            "createTime": "2026-03-19 15:56:12",
+            "openConversationId": "cidnUGYBndbkyXM+8ZSCn8fpUX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgmXruuahELi5C0lh5hTHHOQ==",
+            "sender": "叶阳",
+            "senderOpenDingTalkId": "DJ4N1sF2LGub8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "这个文件关于安全部分我这边做好了。佐证材料我们还在整理。数字化这个你可以问一下章毅章总，这个怎么去填。",
+            "createTime": "2026-01-27 14:06:07",
+            "openConversationId": "cidnUGYBndbkyXM+8ZSCn8fpUX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msga42oCJHuMnG4ibIf1KGlQw==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 东方日升2025年ESG定性收资清单 - 流程与信息中心-汪德嘉(1).docx",
+            "createTime": "2026-01-27 14:05:16",
+            "openConversationId": "cidnUGYBndbkyXM+8ZSCn8fpUX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msge6oYXvfI/Rubko3buMLZEw==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          }
+        ],
+        "openConversationId": "cidnUGYBndbkyXM+8ZSCn8fpUX5wby+FqFIi79iEaKOEBc=",
+        "singleChat": true,
+        "title": "叶阳"
+      },
+      {
+        "messages": [
+          {
+            "content": "[文件] 储能三一八网络事故报告.docx",
+            "createTime": "2026-03-19 15:14:12",
+            "openConversationId": "cid0ztFmDh/N+uHEzc/lLvHI0X5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msg0o4KY2bBhUQ5ofv8GiWcQQ==",
+            "sender": "许明胜",
+            "senderOpenDingTalkId": "Dt7W8nemptPGu15iPzB7LxKR76eXgzZR94"
+          },
+          {
+            "content": "[文件] 2026年1月-基础架构部工作月报-汪德嘉.pptx",
+            "createTime": "2026-02-11 16:19:14",
+            "openConversationId": "cid0ztFmDh/N+uHEzc/lLvHI0X5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgPLXr2ZojgRz9JuLmbTBAbQ==",
+            "sender": "许明胜",
+            "senderOpenDingTalkId": "Dt7W8nemptPGu15iPzB7LxKR76eXgzZR94"
+          },
+          {
+            "content": "[文件] WK07-基础架构部-汪德嘉.pptx",
+            "createTime": "2026-02-11 15:51:50",
+            "openConversationId": "cid0ztFmDh/N+uHEzc/lLvHI0X5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msg0HtPLeiXRjXe9WSG+9abyA==",
+            "sender": "许明胜",
+            "senderOpenDingTalkId": "Dt7W8nemptPGu15iPzB7LxKR76eXgzZR94"
+          },
+          {
+            "content": "[文件] WK06-基础架构部-汪德嘉.pptx",
+            "createTime": "2026-02-04 15:06:52",
+            "openConversationId": "cid0ztFmDh/N+uHEzc/lLvHI0X5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgE2+/5nX7XxZK7Y5yqa64Yg==",
+            "sender": "许明胜",
+            "senderOpenDingTalkId": "Dt7W8nemptPGu15iPzB7LxKR76eXgzZR94"
+          },
+          {
+            "content": "[文件] WK05-基础架构部-汪德嘉.pptx",
+            "createTime": "2026-01-28 14:54:06",
+            "openConversationId": "cid0ztFmDh/N+uHEzc/lLvHI0X5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgl1JZl1vGT9tdUBznU9CH3A==",
+            "sender": "许明胜",
+            "senderOpenDingTalkId": "Dt7W8nemptPGu15iPzB7LxKR76eXgzZR94"
+          }
+        ],
+        "openConversationId": "cid0ztFmDh/N+uHEzc/lLvHI0X5wby+FqFIi79iEaKOEBc=",
+        "singleChat": true,
+        "title": "许明胜"
+      },
+      {
+        "messages": [
+          {
+            "content": "[文件] 帆软报表使用问题收集.xlsx",
+            "createTime": "2026-03-13 16:16:01",
+            "openConversationId": "cidof/VH3/6pfI0S+oHd9a/sg==",
+            "openMessageId": "msgyJobPDsqCdLKsnibjvh6cA==",
+            "sender": "郑丹聪",
+            "senderOpenDingTalkId": "DiPSUXbXKDdI4QZAY5NlIgs5kZaeMo7SiSD"
+          }
+        ],
+        "openConversationId": "cidof/VH3/6pfI0S+oHd9a/sg==",
+        "singleChat": false,
+        "title": "帆软报表开发群"
+      },
+      {
+        "messages": [
+          {
+            "content": "[文件] 钉钉画册1022-改仙乐.pdf",
+            "createTime": "2026-03-13 13:34:10",
+            "openConversationId": "ciddpxYq4Ch1QnTu1+K3Y0tNA==",
+            "openMessageId": "msgAEX0EcZQbo9Un4YrtuA+vQ==",
+            "sender": "Alex俞华",
+            "senderOpenDingTalkId": "D28YQoZbTxpy65iSJI0u9TtOmHzt5ZVdug"
+          }
+        ],
+        "openConversationId": "ciddpxYq4Ch1QnTu1+K3Y0tNA==",
+        "singleChat": false,
+        "title": "东方日升新能源股份有限公司的钉钉官方服务群"
+      },
+      {
+        "messages": [
+          {
+            "content": "[文件] 宁海县紧缺职业（工种）高技能人才岗位补贴汇总表.xlsx",
+            "createTime": "2026-03-12 08:16:12",
+            "openConversationId": "cidWc47xByc7E2jaQ5KcaVDLA==",
+            "openMessageId": "msgc+Md5DDGwZ6NqAfUApSvdA==",
+            "sender": "王瑾",
+            "senderOpenDingTalkId": "DoW4gTBnOYPiiTTVvsdNYk3x76eXgzZR94"
+          },
+          {
+            "content": "[文件] 关于开展宁海县紧缺工种补贴申报的通知.pdf",
+            "createTime": "2026-03-12 08:16:06",
+            "openConversationId": "cidWc47xByc7E2jaQ5KcaVDLA==",
+            "openMessageId": "msgi1XAS9+VEH2P42fpjwzA9A==",
+            "sender": "王瑾",
+            "senderOpenDingTalkId": "DoW4gTBnOYPiiTTVvsdNYk3x76eXgzZR94"
+          },
+          {
+            "content": "[文件] 2026年春节后复工复产培训.pptx",
+            "createTime": "2026-03-03 18:56:37",
+            "openConversationId": "cidWc47xByc7E2jaQ5KcaVDLA==",
+            "openMessageId": "msgJTGn+zPZOQkSKeXOQs0geA==",
+            "sender": "王瑾",
+            "senderOpenDingTalkId": "DoW4gTBnOYPiiTTVvsdNYk3x76eXgzZR94"
+          }
+        ],
+        "openConversationId": "cidWc47xByc7E2jaQ5KcaVDLA==",
+        "singleChat": false,
+        "title": "流程与信息中心"
+      },
+      {
+        "messages": [
+          {
+            "content": "[文件] 企业权限管理.pdf",
+            "createTime": "2026-03-09 16:32:42",
+            "openConversationId": "cidUtPF/t2bNUHJuUT27xm5sQ==",
+            "openMessageId": "msg5ngo/TozRWEjqOf5PFOd8w==",
+            "sender": "徐建锋",
+            "senderOpenDingTalkId": "DluiPkrcmf72x1iirzii7w7gZh76eXgzZR94"
+          },
+          {
+            "content": "[文件] 软件开发项目工作项配置最佳实践.pdf",
+            "createTime": "2026-03-09 15:56:49",
+            "openConversationId": "cidUtPF/t2bNUHJuUT27xm5sQ==",
+            "openMessageId": "msgvG9yVKKj7ZLeCaY7cU2kQA==",
+            "sender": "徐建锋",
+            "senderOpenDingTalkId": "DluiPkrcmf72x1iirzii7w7gZh76eXgzZR94"
+          },
+          {
+            "content": "[文件] 日常代码仓库权限申请表单.xlsx",
+            "createTime": "2026-03-09 15:56:34",
+            "openConversationId": "cidUtPF/t2bNUHJuUT27xm5sQ==",
+            "openMessageId": "msgZr+V5s4uXIuk1x4MSbC7/g==",
+            "sender": "徐建锋",
+            "senderOpenDingTalkId": "DluiPkrcmf72x1iirzii7w7gZh76eXgzZR94"
+          },
+          {
+            "content": "[文件] Gitee项目推进计划V1.0-2026-03-02.xlsx",
+            "createTime": "2026-03-02 15:29:29",
+            "openConversationId": "cidUtPF/t2bNUHJuUT27xm5sQ==",
+            "openMessageId": "msgaRmzPF6aAJpP1WQ8mURvrA==",
+            "sender": "徐建锋",
+            "senderOpenDingTalkId": "DluiPkrcmf72x1iirzii7w7gZh76eXgzZR94"
+          },
+          {
+            "content": "[文件] Gitee项目推进计划V1.0-2026-02-09.xlsx",
+            "createTime": "2026-02-09 14:03:18",
+            "openConversationId": "cidUtPF/t2bNUHJuUT27xm5sQ==",
+            "openMessageId": "msg2Oxxbdi58Qu2Ea/IIa4D9A==",
+            "sender": "徐建锋",
+            "senderOpenDingTalkId": "DluiPkrcmf72x1iirzii7w7gZh76eXgzZR94"
+          }
+        ],
+        "openConversationId": "cidUtPF/t2bNUHJuUT27xm5sQ==",
+        "singleChat": false,
+        "title": "研发资料与软件代码管理推动群"
+      },
+      {
+        "messages": [
+          {
+            "content": "[文件] 点点云阿里云资源统计v1.xlsx",
+            "createTime": "2026-03-06 15:18:09",
+            "openConversationId": "cidHH9Uv8BKruhshYeqSH5QJUX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgawDwACnz0P4w5qGyI/Qv/Q==",
+            "sender": "张津泽",
+            "senderOpenDingTalkId": "D2dfOpgsgH6bCFwoviiG9CwB76eXgzZR94"
+          },
+          {
+            "content": "嘉哥，台账整理好了，您过目下；文件已同步共享至昇盘（企业空间/东方日升集团/集团-流程与信息中心/系统架构组/运维台账/公有云台账）。",
+            "createTime": "2026-02-10 11:30:12",
+            "openConversationId": "cidHH9Uv8BKruhshYeqSH5QJUX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgZsgT8XangfAmOQcJV/t1OA==",
+            "sender": "张津泽",
+            "senderOpenDingTalkId": "D2dfOpgsgH6bCFwoviiG9CwB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 公司域名清单台账（含备案）.xlsx",
+            "createTime": "2026-02-10 11:27:19",
+            "openConversationId": "cidHH9Uv8BKruhshYeqSH5QJUX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msg6/vlQh0fLEhD9iGk9mIy/Q==",
+            "sender": "张津泽",
+            "senderOpenDingTalkId": "D2dfOpgsgH6bCFwoviiG9CwB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 东方日升新能源股份有限公司在职员工20260203.xls",
+            "createTime": "2026-02-03 14:27:35",
+            "openConversationId": "cidHH9Uv8BKruhshYeqSH5QJUX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msggBTCXpy5Hl0+dJZjJ0kpLw==",
+            "sender": "张津泽",
+            "senderOpenDingTalkId": "D2dfOpgsgH6bCFwoviiG9CwB76eXgzZR94"
+          },
+          {
+            "content": "嘉哥，个人钉盘文件的自动转交规则是会给到直属主管。[图片消息](mediaId=@lQLPJx9jO_SgW73NAW7NAgCwW60MBgNe5OkJWhjK-xdhAQ)我们这边查询到该离职人员的直属主管是林董，所以林董收到该信息正常的。[图片消息](mediaId=@lQLPJxJHMuFnu73NArfNBSuwHeEAEaIC178JWhjK-xdhAA)",
+            "createTime": "2026-02-03 13:12:00",
+            "openConversationId": "cidHH9Uv8BKruhshYeqSH5QJUX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgoL5jotKNs6T+xh8Hf7qVIg==",
+            "sender": "张津泽",
+            "senderOpenDingTalkId": "D2dfOpgsgH6bCFwoviiG9CwB76eXgzZR94"
+          },
+          {
+            "content": "嘉哥 钉钉人员处理都是自动化的（丁那边开发的），关于钉盘文件的转交没有配置项，下午我找刘丁安再确认下",
+            "createTime": "2026-02-03 12:26:40",
+            "openConversationId": "cidHH9Uv8BKruhshYeqSH5QJUX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msg/ynLDfGhnkW1rs2VweKZqw==",
+            "sender": "张津泽",
+            "senderOpenDingTalkId": "D2dfOpgsgH6bCFwoviiG9CwB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 信息化需求汇总（2025需求梳理）.xlsx",
+            "createTime": "2026-02-02 08:33:02",
+            "openConversationId": "cidHH9Uv8BKruhshYeqSH5QJUX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgIbvXq6EWjRq6pv6oHotbwg==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          }
+        ],
+        "openConversationId": "cidHH9Uv8BKruhshYeqSH5QJUX5wby+FqFIi79iEaKOEBc=",
+        "singleChat": true,
+        "title": "张津泽"
+      },
+      {
+        "messages": [
+          {
+            "content": "[文件] 数据库统计 - 2026.xlsx",
+            "createTime": "2026-03-05 09:10:28",
+            "openConversationId": "cidPiE+HVAoxgTJQp+Rdf+m8EX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msg3K5R4XRPIxN0r6LETmYQJw==",
+            "sender": "伍俊杰",
+            "senderOpenDingTalkId": "DKBWGACn1qBZ1iirzii7w7gZh76eXgzZR94"
+          },
+          {
+            "content": "[文件] 办公云桌面用户操作手册.pdf",
+            "createTime": "2026-01-28 14:02:43",
+            "openConversationId": "cidPiE+HVAoxgTJQp+Rdf+m8EX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgxObix/A+ca1mNH1Jg/x2vw==",
+            "sender": "伍俊杰",
+            "senderOpenDingTalkId": "DKBWGACn1qBZ1iirzii7w7gZh76eXgzZR94"
+          }
+        ],
+        "openConversationId": "cidPiE+HVAoxgTJQp+Rdf+m8EX5wby+FqFIi79iEaKOEBc=",
+        "singleChat": true,
+        "title": "伍俊杰"
+      },
+      {
+        "messages": [
+          {
+            "content": "@张津泽 这是公开访问桶吗？文件链接发一下",
+            "createTime": "2026-03-04 16:33:03",
+            "openConversationId": "cidEjJWheZbsjVKHxo0uaKnTw==",
+            "openMessageId": "msgSNnjXrEfUAjJnNQcA7xT7Q==",
+            "quotedMessage": {
+              "content": "@吴既稳 你上次会议上是不是说 要把这个去掉？[图片消息](mediaId=@lQLPJxJsfOtocRXNARvNAfqwQ880P-ZTCBcJf5j4YKG1AA)/*",
+              "createTime": "2026-03-04 16:15:48",
+              "openConversationId": "cidEjJWheZbsjVKHxo0uaKnTw==",
+              "openMessageId": "msgo4AxdRzmXJv90haV+xuKtA==",
+              "sender": "null"
+            },
+            "sender": "吴既稳",
+            "senderOpenDingTalkId": "DRnWNo5m7F4rCHW2wBviiOcx76eXgzZR94"
+          },
+          {
+            "content": "在这个桶里上传几个测试文件",
+            "createTime": "2026-03-04 16:32:01",
+            "openConversationId": "cidEjJWheZbsjVKHxo0uaKnTw==",
+            "openMessageId": "msgqDkkRt8kKgEh77JKSolSAA==",
+            "sender": "吴既稳",
+            "senderOpenDingTalkId": "DRnWNo5m7F4rCHW2wBviiOcx76eXgzZR94"
+          },
+          {
+            "content": "测试桶访问域名我怎么模拟业务用白名单/非白名单访问这文件",
+            "createTime": "2026-03-04 16:17:11",
+            "openConversationId": "cidEjJWheZbsjVKHxo0uaKnTw==",
+            "openMessageId": "msgR1SH9/GeUMy1GDoZ09SUTg==",
+            "sender": "郑浩东",
+            "senderOpenDingTalkId": "DPX17UsxGdDpo5cwGkL27owiEiE"
+          },
+          {
+            "content": "1 、这段时间可以先把白名单设置验证是否可行做掉：先用一个测试桶（新建一个），针对这个桶做白名单referer。然后在这个桶里上传文件。把这个文件的链接，放入各白名单系统中，验证是否可以访问（可访问为验证通过）。然后在非白名单系统中测试是否可以访问（不可访问为验证通过）。\n2、如果上述步骤验证验证通过，等他回来后，代码改造完成后再设置白名单referer。代码改造主要是服务端下载文件场景中需要添加请求头，做提前适配。待白名单配置好后，没问题就可以切换了\n3、等他回来处理吧",
+            "createTime": "2026-03-04 15:23:14",
+            "openConversationId": "cidEjJWheZbsjVKHxo0uaKnTw==",
+            "openMessageId": "msgt7Qikj5dwVUCO3fs+Fu9CA==",
+            "quotedMessage": {
+              "content": "@521970299 吴工，关于年前说的app1和app2访问桶代码需要更改是怎么样的，和安全组的白名单设置有影响么",
+              "createTime": "2026-03-04 14:25:13",
+              "openConversationId": "cidEjJWheZbsjVKHxo0uaKnTw==",
+              "openMessageId": "msg6E2dAUBfuQoDxJSisYZLGg==",
+              "sender": "null"
+            },
+            "sender": "吴既稳",
+            "senderOpenDingTalkId": "DRnWNo5m7F4rCHW2wBviiOcx76eXgzZR94"
+          },
+          {
+            "content": "[文件] 访问桶域名清单.xlsx",
+            "createTime": "2026-02-10 17:09:14",
+            "openConversationId": "cidEjJWheZbsjVKHxo0uaKnTw==",
+            "openMessageId": "msgZGeaQwNGSLrsUpZZuyzR2w==",
+            "sender": "郑浩东",
+            "senderOpenDingTalkId": "DPX17UsxGdDpo5cwGkL27owiEiE"
+          },
+          {
+            "content": "[文件] 访问桶域名清单.xlsx",
+            "createTime": "2026-02-10 17:07:03",
+            "openConversationId": "cidEjJWheZbsjVKHxo0uaKnTw==",
+            "openMessageId": "msgyePHcTKWjzVzkL5IjVTEqw==",
+            "sender": "郑浩东",
+            "senderOpenDingTalkId": "DPX17UsxGdDpo5cwGkL27owiEiE"
+          },
+          {
+            "content": "[文件] 访问桶域名清单.xlsx",
+            "createTime": "2026-02-10 16:52:52",
+            "emotionReplyList": [
+              {
+                "emoji": "收到",
+                "replyUsers": [
+                  "池铭航"
+                ]
+              }
+            ],
+            "openConversationId": "cidEjJWheZbsjVKHxo0uaKnTw==",
+            "openMessageId": "msgHSvjSlRQMYFhlOxdM5pVog==",
+            "sender": "郑浩东",
+            "senderOpenDingTalkId": "DPX17UsxGdDpo5cwGkL27owiEiE"
+          }
+        ],
+        "openConversationId": "cidEjJWheZbsjVKHxo0uaKnTw==",
+        "singleChat": false,
+        "title": "TMS服务器运维"
+      },
+      {
+        "messages": [
+          {
+            "content": "[文件] 信息安全与数字化_数据补充_2026030412.doc",
+            "createTime": "2026-03-04 13:02:06",
+            "openConversationId": "cidH/4usf+Z7eBNA/Gq6xJXYcJKP7sInFNkX45mwOoiNws=",
+            "openMessageId": "msghmSZKBhPhjUjnRNUtdxV8g==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 信息安全与数字化_数据补充_2026030411.doc",
+            "createTime": "2026-03-04 11:57:21",
+            "openConversationId": "cidH/4usf+Z7eBNA/Gq6xJXYcJKP7sInFNkX45mwOoiNws=",
+            "openMessageId": "msg4ghkJV+PkhyChWqjytcmjg==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 信息安全与数字化_数据补充_2026030411.doc",
+            "createTime": "2026-03-04 11:46:13",
+            "openConversationId": "cidH/4usf+Z7eBNA/Gq6xJXYcJKP7sInFNkX45mwOoiNws=",
+            "openMessageId": "msgM4uIRYMiPBHmHJz7vFhwFA==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          }
+        ],
+        "openConversationId": "cidH/4usf+Z7eBNA/Gq6xJXYcJKP7sInFNkX45mwOoiNws=",
+        "singleChat": true,
+        "title": "丁璐 Ruth"
+      },
+      {
+        "messages": [
+          {
+            "content": "丁璐 Ruth与章毅的聊天记录\n丁璐 Ruth:年度的ESG报告马上要信披了，报告中有关信息安全与数字化的内容我做了截取，请查阅，望对相关部分予以修订与完善。这周五希望可以发回\n丁璐 Ruth:[文件]",
+            "createTime": "2026-03-04 09:46:13",
+            "forwardMessages": [
+              {
+                "content": "年度的ESG报告马上要信披了，报告中有关信息安全与数字化的内容我做了截取，请查阅，望对相关部分予以修订与完善。这周五希望可以发回",
+                "createTime": "2026-03-04 09:40:39",
+                "openConversationId": "cidiWCGyATlOINMQI+5C5Ybk0UqqUxdJxG/OxacuIRDXM0=",
+                "openMessageId": "msgaG/QVYqH2ePpF9JhR7VvYA==",
+                "sender": "null"
+              },
+              {
+                "content": "[文件] 信息安全与数字化.doc",
+                "createTime": "2026-03-04 09:42:35",
+                "openConversationId": "cid7SsM7LTQl6ChOg7ZtEOy7EX5wby+FqFIi79iEaKOEBc=",
+                "openMessageId": "msgANWqnyiFM/38nRgnG2cqug==",
+                "sender": "null"
+              }
+            ],
+            "openConversationId": "cid7SsM7LTQl6ChOg7ZtEOy7EX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgDRr9KGRhweZeTPtVKH61QA==",
+            "sender": "章毅",
+            "senderOpenDingTalkId": "D30qgelSqiisL2dXMIRu2xah76eXgzZR94"
+          },
+          {
+            "content": "[文件] 公司域名清单台账（含备案）.xlsx",
+            "createTime": "2026-02-10 12:04:32",
+            "openConversationId": "cid7SsM7LTQl6ChOg7ZtEOy7EX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgUPWSMDKTgkT0eLnPQzcAPA==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 东方日升新能源股份有限公司在职员工20260203.xls",
+            "createTime": "2026-02-03 14:45:40",
+            "openConversationId": "cid7SsM7LTQl6ChOg7ZtEOy7EX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgo3PoXNIwBfRryoR9GEBG1w==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "章总，个人钉盘文件的自动转交规则是会给到直属主管。[图片消息](mediaId=@lQLPJx9jO_SgW73NAW7NAgCwW60MBgNe5OkJWhjK-xdhAQ)我们这边查询到该离职人员的直属主管是林董，所以林董收到该信息正常的。[图片消息](mediaId=@lQLPJxJHMuFnu73NArfNBSuwHeEAEaIC178JWhjK-xdhAA)",
+            "createTime": "2026-02-03 13:22:29",
+            "openConversationId": "cid7SsM7LTQl6ChOg7ZtEOy7EX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msg7RipiLOe0pLs4jUf1ZWCcw==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "钉钉人员处理都是自动化的（丁那边开发的），关于钉盘文件的转交没有配置项，默认是转交人优先级：直属主管 \u003e 钉盘管理员 \u003e 主管理员，我下午再和丁建勋那边确认下",
+            "createTime": "2026-02-03 12:33:50",
+            "openConversationId": "cid7SsM7LTQl6ChOg7ZtEOy7EX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgeL3kteArIYE0lN4fUNisPw==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 损失统计（总部+基地+子公司）.xlsx",
+            "createTime": "2026-01-29 10:07:17",
+            "openConversationId": "cid7SsM7LTQl6ChOg7ZtEOy7EX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgiQ55hNBAMN8d8n8ckbbS0A==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 各系统受影响情况.xlsx",
+            "createTime": "2026-01-29 10:06:56",
+            "openConversationId": "cid7SsM7LTQl6ChOg7ZtEOy7EX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msg2stpF4yTbUI7ynEUlgYpuA==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 系统灾害事件损失情况分析_20250919_张孝志.pptx",
+            "createTime": "2026-01-29 10:02:18",
+            "openConversationId": "cid7SsM7LTQl6ChOg7ZtEOy7EX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgQAPWRJYiunKFy5c2srWMRQ==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 系统受灾情况统计分析_20250919_张孝志.xlsx",
+            "createTime": "2026-01-29 09:59:38",
+            "openConversationId": "cid7SsM7LTQl6ChOg7ZtEOy7EX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgkLB2oz3fAzgh3Nl/gBNnCQ==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 数据泄露事件专项分析报告_v0.7_20260128.docx",
+            "createTime": "2026-01-28 14:02:28",
+            "openConversationId": "cid7SsM7LTQl6ChOg7ZtEOy7EX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgkK/UvzXYDra7T9za99oxsQ==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "#### 我更新了 【bobhao邮箱异常简报.docx】\r\n\u003e ###### 汪德嘉 DJ Wang上传的文件：[bobhao邮箱异常简报.docx](https://qr.dingtalk.com/action/messagejump?objectId=209515960792\u0026objectType=0\u0026objectContainer=28112694580\u0026objectContentType=500\u0026url=\u0026cid=160895115:751685061\u0026orgId=0\u0026name=bobhao%E9%82%AE%E7%AE%B1%E5%BC%82%E5%B8%B8%E7%AE%80%E6%8A%A5.docx)",
+            "createTime": "2026-01-27 15:23:45",
+            "openConversationId": "cid7SsM7LTQl6ChOg7ZtEOy7EX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgRKYq5EhX3pYcpbQku27zYg==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] bobhao邮箱异常简报.docx",
+            "createTime": "2026-01-27 10:53:25",
+            "openConversationId": "cid7SsM7LTQl6ChOg7ZtEOy7EX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msg54Bloc+xWCJShTNUT41s4A==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          },
+          {
+            "content": "[文件] 关于risen.com与enel.com邮件往来遭遇钓鱼诈骗事件的说明及应对建议.docx",
+            "createTime": "2026-01-27 09:05:01",
+            "openConversationId": "cid7SsM7LTQl6ChOg7ZtEOy7EX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgLV7I0PsclaAOdKNJTyzzzw==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          }
+        ],
+        "openConversationId": "cid7SsM7LTQl6ChOg7ZtEOy7EX5wby+FqFIi79iEaKOEBc=",
+        "singleChat": true,
+        "title": "章毅"
+      },
+      {
+        "messages": [
+          {
+            "content": "[文件] 车间一键提报工单操作手册.docx",
+            "createTime": "2026-02-09 10:17:06",
+            "openConversationId": "cid8lRzGd6F9qtENL1zSLIpmQ==",
+            "openMessageId": "msg/VbQb7F5eNUjckcAXvibEw==",
+            "sender": "石敏",
+            "senderOpenDingTalkId": "D28YQoZbTxpxV256UJIFI4iiG3bO8miidQR"
+          }
+        ],
+        "openConversationId": "cid8lRzGd6F9qtENL1zSLIpmQ==",
+        "singleChat": false,
+        "title": "光伏信息部周会群"
+      },
+      {
+        "messages": [
+          {
+            "content": "[文件] 车间一键提报工单操作手册.docx",
+            "createTime": "2026-02-09 10:13:51",
+            "openConversationId": "cid61GnyvWzxo8F5VRy+MKEjQ==",
+            "openMessageId": "msgO/mH/0r56EN6/Th2FYkJJQ==",
+            "sender": "石敏",
+            "senderOpenDingTalkId": "D28YQoZbTxpxV256UJIFI4iiG3bO8miidQR"
+          }
+        ],
+        "openConversationId": "cid61GnyvWzxo8F5VRy+MKEjQ==",
+        "singleChat": false,
+        "title": "集团桌面运维对接群"
+      },
+      {
+        "messages": [
+          {
+            "content": "哈咯 汪工 提点小意见 由于VPN都是海外 所以难免有些时差会寻求帮助 但也不是大半夜 最好先解决问题改善一下 再开玩笑哈 平时也不会太多打扰的 实在是连不上网 传不了必要文件",
+            "createTime": "2026-02-06 17:48:59",
+            "openConversationId": "cidTAegflgFkct8dQDZVI/hckX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgvLt4mxau4/x6bOZWIMSWgg==",
+            "sender": "Elsa Ma-麻芝华",
+            "senderOpenDingTalkId": "Dfa9431M3EOItKULQVqA0jB76eXgzZR94"
+          }
+        ],
+        "openConversationId": "cidTAegflgFkct8dQDZVI/hckX5wby+FqFIi79iEaKOEBc=",
+        "singleChat": true,
+        "title": "Elsa Ma-麻芝华"
+      },
+      {
+        "messages": [
+          {
+            "content": "[文件] 80、东方日升新能源股份有限公司数据安全诊断报告.pdf",
+            "createTime": "2026-02-05 14:20:58",
+            "openConversationId": "ciddP2hLnMnjUCBkWekzDqPBkX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msgVv5c3uh14KuhkAvpHwACYQ==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          }
+        ],
+        "openConversationId": "ciddP2hLnMnjUCBkWekzDqPBkX5wby+FqFIi79iEaKOEBc=",
+        "singleChat": true,
+        "title": "姜滢"
+      },
+      {
+        "messages": [
+          {
+            "content": "员工马宇挺已从「东方日升新能源股份有限公司」离职，他的企业云盘个人文件已转交给你。（转交人优先级：直属主管 \u003e 钉盘管理员 \u003e 主管理员）",
+            "createTime": "2026-02-03 12:13:13",
+            "openConversationId": "cidVzCweJSBOuq+8+/kOXT2PUX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msguxzAaDr7XLDri5G/NvkdxA==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          }
+        ],
+        "openConversationId": "cidVzCweJSBOuq+8+/kOXT2PUX5wby+FqFIi79iEaKOEBc=",
+        "singleChat": true,
+        "title": "汪德嘉 DJ Wang"
+      },
+      {
+        "messages": [
+          {
+            "content": "运维周例会\n01:04:46\n王瑾\n主题: 事故管理与系统优化会议 时间: 2026-01-29 10:32:09 参与人: 许明胜, 徐伟勇, 徐建锋, 胡延骏, 汪德嘉 DJ Wang, 薛傲晖, 苏俏咪, 张宸, 章毅, 李广会 会议围绕事故管理机制建设、系统功能优化、项目验收进展、账号与权限管理、软件升级风险及安全策略等多个议题展开讨论。重点明确了当前问题管理模块可基于现有Atlas平台功能进行试用，暂不全面推广，而是选取近期典型事故案例进行复盘并制定管理规则；同时推进储能项目验收、代码仓库权限体系设计、Win11升级兼容性测试等工作，并针对MC65系统因密码错误重试导致服务卡顿的安全隐患提出白名单封禁与预警机制改进要求。 事故管理机制建设 现状评估 当前Atlas平台自带问题管理模块，已具备时间节点、标题内容、处理人、预防措施、改进进度和评价等基础字段，初步满足内部小范围使用需求。 胡延骏认为该模块可用于记录，但需先通过SOP验证其适用性。 推进策略 暂不向所有部门推广，建议选取2–3个近期典型事故进行试填，专项会议评审填报效果。 张宸强调核心在于建立管理体系而非系统实现，后续需形成包含事故分级、跟进流程的体系文件。 王瑾提议由胡经理组织标杆案例复盘会议，完成登记并推进。 系统与平台功能优化 ITOP问题模块应用 许明胜汇报已完成ITOP问题模块需求评估，输出需求调研表。 徐伟勇提及新增问题管理模块的初步会议已召开，将考虑为生产基地人员建立快速报账通道以提升工单记录率。 终端与系统更新 Win11升级工作持续推进，本周完成15–20台终端更新。 针对研发端台式机升级可能引发的软件兼容问题，张宸建议先选取个别设备测试，若不升级则必须确保设备断网（包括内网），必要时可通过物理方式封禁网口。 发现Win11在“性能模式”下存在CPU锁频卡顿问题，疑似系统或驱动bug，正协调供应商确认解决方案。 储能项目验收与整改 验收安排 清单内整改项基本完成，原计划催促对方开展线上点检与验收。 经协调，决定由我方安排专人现场蹲点2–3天，逐项点检设备安装与资料完整性后再确定验收方案。 因对方未按时进场，节前完成验收可能性较低，预计延至2月第二周后。 履约保证金 商务确认履约保证金退还前提是项目正式验收完成，目前尚未支付，已向对方明确此流程。 代码与账号权限管理 云端代码管理方案 储能相关产品图纸与算法代码将采用云端存储方案，预算约2万元/年，拟设立独立云账号统一管理。 张宸建议由丁建勋协助徐建锋规划版本管理架构，欧阳总提供技术支持，后续组织培训收集各部门需求。 权限分级管理原则 章毅明确：最高权限由安全组掌控，信息中心可开设子账号至各部门。 各部门需提交权限申请表，明确开发组长等关键角色的权责，内部细粒度权限由部门自行管理。 安全组负责整体权限盘点与合规审计，防止权限混乱引发安全事故。 安全与风险管理 MC65系统防攻击优化 当前因外系统使用错误密码频繁登录导致MC65响应延迟，影响正常服务。 汪德嘉建议由业务方梳理合法数据库访问IP，在主机防火墙设置白名单，仅允许可信源连接。 张宸指出需建立攻击预警机制，避免恶意试密码行为演变为服务中断事故，不能依赖无防护的延迟验证策略。 统一软件与资产管理体系建设 审计提出需建立统一软件采购与管理制度，王瑾将协同资产管理部盘点已知非信息中心采购软件（如财务类），共同制定管理流程。 针对高价值硬件配件资产，王德佳牵头建立专项盘点与管理体系，防范资产流失风险。 春节期间出勤与值班安排 放假时间差异 总部按统一标准放假；储能基地执行法定9天假期，其余时间需上班；双语集团提前一周放假。 各子公司与基地根据生产情况自行排期，人事尚未最终发布通知。 值班管理要求 需现场出勤人员须统计后报人事备案，否则无法打卡进入办公场所。 内部值班表不再发文，由各经理口头传达，避免留下可截图的书面记录。 派驻楚雄支援储能业务的员工应遵循储能工作安排，若参与打螺丝等现场任务，则同步执行储能作息。 其他事项进展 商务OA流程调整 完成风控副总裁节点删除、供应链合同法务审批改为归档抄送、HJT新项目流程搭建等流程变更。 推进U8付款接口与OA回写对接，预计本周完成。 数据中台合同已签，付款暂缓，待老丁复盘完成后统一决策。 桌面组运维工作 总部及双翼弱电监控与门禁完成清洁巡检，发现一处安全隐患已移交行政处理。 协助完成报废电脑内存硬盘分类评估，印度海报内容审核中，杭州办公室冷脸机即将施工安装。 体系文件与审计整改 新发布三份体系文件卡在审批节点，精细化管理规定今日宣导。 信息化项目验收制度需根据审计建议修订后重新提交。 启动可持续发展报告案例收集，软件资产盘点计划下周与资产管理部协同推进。\n[https://alidocs.dingtalk.com/i/u/dingdocSelectorV4/save?resourceId=76327569643230313532353835345f3534313436323638305f39\u0026resourceType=SHANJI\u0026createLink=true\u0026messageBizId=97f80b16049b49d6abfd70ef58cf8a77lippi-transcribe_share_record_201525854\u0026utmSource=im\u0026utmMedium=im_shanji_link](https://alidocs.dingtalk.com/i/u/dingdocSelectorV4/save?resourceId=76327569643230313532353835345f3534313436323638305f39\u0026resourceType=SHANJI\u0026createLink=true\u0026messageBizId=97f80b16049b49d6abfd70ef58cf8a77lippi-transcribe_share_record_201525854\u0026utmSource=im\u0026utmMedium=im_shanji_link)\n[dingtalk://dingtalkclient/page/flash_minutes_detail?minutesId=76327569643230313532353835345f3534313436323638305f39\u0026from=8\u0026creator=541462680](dingtalk://dingtalkclient/page/flash_minutes_detail?minutesId=76327569643230313532353835345f3534313436323638305f39\u0026from=8\u0026creator=541462680)\n[dingtalk://dingtalkclient/page/flash_minutes_detail?minutesId=76327569643230313532353835345f3534313436323638305f39\u0026from=8](dingtalk://dingtalkclient/page/flash_minutes_detail?minutesId=76327569643230313532353835345f3534313436323638305f39\u0026from=8)\n[dingtalk://dingtalkclient/page/flash_minutes_detail?minutesId=76327569643230313532353835345f3534313436323638305f39\u0026from=8](dingtalk://dingtalkclient/page/flash_minutes_detail?minutesId=76327569643230313532353835345f3534313436323638305f39\u0026from=8)",
+            "createTime": "2026-01-29 11:59:33",
+            "openConversationId": "cidalXaRGNjbfH5imGTGYvadkX5wby+FqFIi79iEaKOEBc=",
+            "openMessageId": "msg3og4HOALu/ifeM1TTVqioQ==",
+            "sender": "王瑾",
+            "senderOpenDingTalkId": "DoW4gTBnOYPiiTTVvsdNYk3x76eXgzZR94"
+          }
+        ],
+        "openConversationId": "cidalXaRGNjbfH5imGTGYvadkX5wby+FqFIi79iEaKOEBc=",
+        "singleChat": true,
+        "title": "王瑾"
+      },
+      {
+        "messages": [
+          {
+            "content": "[文件] 杀毒软件用户操作手册2026_01_28v0.2.pdf",
+            "createTime": "2026-01-28 11:15:49",
+            "openConversationId": "ciduS0xTQVrlcyvW6JzRXHRmsZR37obMA9tEPh+alPNE+4=",
+            "openMessageId": "msgsE28hcLF4YtNb6LfgL0q/g==",
+            "sender": "池铭航",
+            "senderOpenDingTalkId": "D28YQoZbTxpwNGF2q2m3TJrZZpiPXzHBPw"
+          }
+        ],
+        "openConversationId": "ciduS0xTQVrlcyvW6JzRXHRmsZR37obMA9tEPh+alPNE+4=",
+        "singleChat": true,
+        "title": "池铭航"
+      },
+      {
+        "messages": [
+          {
+            "content": "汪德嘉 DJ Wang与刘鹏程的聊天记录\n刘鹏程:[文件]\n刘鹏程:[文件]",
+            "createTime": "2026-01-27 08:42:39",
+            "forwardMessages": [
+              {
+                "content": "[文件] 云桌面用户操作手册.pdf",
+                "createTime": "2026-01-27 08:33:57",
+                "openConversationId": "cidTQE4zG8Wbzkstk7xCflnD5pBaaLXbbQ6W4JWlcQsjFg=",
+                "openMessageId": "msg1O4YTUIn7T5MkpI9FMkEGA==",
+                "sender": "null"
+              },
+              {
+                "content": "[文件] NC安装操作手册.pdf",
+                "createTime": "2026-01-27 08:34:11",
+                "openConversationId": "cidTQE4zG8Wbzkstk7xCflnD5pBaaLXbbQ6W4JWlcQsjFg=",
+                "openMessageId": "msgYCl63qOzfM72sEvy2AWnoQ==",
+                "sender": "null"
+              }
+            ],
+            "openConversationId": "cidTQE4zG8Wbzkstk7xCflnD5pBaaLXbbQ6W4JWlcQsjFg=",
+            "openMessageId": "msgPlVYHccZ1nIqY3O2oZzxAA==",
+            "sender": "汪德嘉 DJ Wang",
+            "senderOpenDingTalkId": "D28YQoZbTxpz8Ss9vDAqObB76eXgzZR94"
+          }
+        ],
+        "openConversationId": "cidTQE4zG8Wbzkstk7xCflnD5pBaaLXbbQ6W4JWlcQsjFg=",
+        "singleChat": true,
+        "title": "汤煜燚"
+      },
+      {
+        "messages": [
+          {
+            "content": "[文件] NC安装操作手册.pdf",
+            "createTime": "2026-01-27 08:34:11",
+            "openConversationId": "cidyipjke68s0WdOyeF42Nn3YxxE2cH85o9uuzRdADnLUM=",
+            "openMessageId": "msgYCl63qOzfM72sEvy2AWnoQ==",
+            "sender": "刘鹏程",
+            "senderOpenDingTalkId": "D28YQoZbTxpyC7xfOn8JzFKs2pdu8tKEc"
+          },
+          {
+            "content": "[文件] 云桌面用户操作手册.pdf",
+            "createTime": "2026-01-27 08:33:57",
+            "openConversationId": "cidyipjke68s0WdOyeF42Nn3YxxE2cH85o9uuzRdADnLUM=",
+            "openMessageId": "msg1O4YTUIn7T5MkpI9FMkEGA==",
+            "sender": "刘鹏程",
+            "senderOpenDingTalkId": "D28YQoZbTxpyC7xfOn8JzFKs2pdu8tKEc"
+          }
+        ],
+        "openConversationId": "cidyipjke68s0WdOyeF42Nn3YxxE2cH85o9uuzRdADnLUM=",
+        "singleChat": true,
+        "title": "刘鹏程"
+      }
+    ],
+    "hasMore": true,
+    "nextCursor": "c1G1+G/DToX3mLNKdTt4HBMvVRMqu8Jgb4VTokKu5UvXraCJCE//eLhL0mN+eq5K6DmZmNlnm/z0BVyHPUE6xQHYJvO/FTBUea9ao/cCgUJ3t2JxDv5HUxtBAW5P0uPsK7JdEio4fmAfQiUp9DT+Bzx6jtsqOOmMoNgEUNb8axONmwfSxaN8oxI+bzpvcnT8nWGxWTJ63Ygkh6fGCPJigReNQTdCgK2BU9AJVD9asAKROCBgf5xNndUoyWc1jzhc"
+  },
+  "success": true
+}

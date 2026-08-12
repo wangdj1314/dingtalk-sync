@@ -100,7 +100,7 @@ python -m http.server 8777 --bind 127.0.0.1
 ```bash
 cd packaging
 build.bat
-# 产出: Output/DingTalkSync_Setup_v2.3.exe
+# 产出: Output/DingTalkSync_Setup_v2.4.exe
 ```
 
 ## 数据输出
@@ -133,6 +133,7 @@ build.bat
 
 ## 版本历史
 
+- v2.4 — DWS 新命令适配：会话列表全量分页(list-all-conversations)、待办标准接口(task list)、听记分步详情(get info/summary/keywords/todos)+批量获取(get batch)、逐字稿分页拉取、通讯录新增花名字段
 - v2.3 — 新增通讯录同步模块、Windows 安装包打包、CREATE_NO_WINDOW 修复
 - v2.2 — 新增听记同步、日程同步、待办同步
 - v2.1 — 图片下载重试、文件断点续传、原子写入

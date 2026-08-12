@@ -77,7 +77,7 @@ if defined ISCC (
     echo.
     echo ============================================
     echo   构建完成！
-    echo   安装包: %PACKAGING_DIR%\Output\DingTalkSync_Setup_v2.3.exe
+    echo   安装包: %PACKAGING_DIR%\Output\DingTalkSync_Setup_v2.4.exe
     echo ============================================
 ) else (
     echo [提示] 未检测到 Inno Setup 6，跳过安装包编译。

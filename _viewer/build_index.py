@@ -30,6 +30,31 @@ IMAGE_MANIFEST = os.path.join(ROOT, "_sync_state", "image_manifest.json")
 
 IMG_MSG_RE = re.compile(r"\[图片消息\]\(mediaId=([^)]+)\)")
 
+# 拼音字典（构建期生成，_gen_pinyin.py）：汉字 -> 无声调全拼；仅用于前端拼音/首字母搜索
+def load_pinyin_dict():
+    p = os.path.join(HERE, "pinyin_dict.json")
+    try:
+        with open(p, encoding="utf-8") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+PINYIN_DICT = load_pinyin_dict()
+
+def to_pinyin(s):
+    """返回 {full: 全拼, initials: 首字母}。汉字取字典拼音；ASCII 字母/数字原样保留；其余忽略。"""
+    full, initials = [], []
+    for ch in (s or ""):
+        if ch in PINYIN_DICT:
+            py = PINYIN_DICT[ch]
+            full.append(py)
+            initials.append(py[0])
+        elif ch.isascii() and (ch.isalpha() or ch.isdigit()):
+            c = ch.lower()
+            full.append(c)
+            initials.append(c)
+    return {"full": "".join(full), "initials": "".join(initials)}
+
 # 与同步脚本 / 前端 sanitize 保持一致：[<>:"/\|?*] -> _ 并去首尾空格
 _SANITIZE_RE = re.compile(r'[<>:"/\\|?*]')
 
@@ -264,12 +289,16 @@ def build_conv_index():
         except Exception:
             continue
         if best is None:
-            convs[title] = {"lastTime": "", "preview": "", "count": 0}
+            convs[title] = {"lastTime": "", "preview": "", "count": 0,
+                            "pinyin": to_pinyin(title)["full"], "py": to_pinyin(title)["initials"]}
         else:
+            py = to_pinyin(title)
             convs[title] = {
                 "lastTime": best[0],
                 "preview": make_preview(best[1], best[2])[:60],
                 "count": count,
+                "pinyin": py["full"],
+                "py": py["initials"],
             }
     return convs
 
@@ -436,6 +465,48 @@ def build_minutes_index():
     return minutes
 
 
+# ---------------------------------------------------------------------------
+# 8. 通讯录索引（来自 _contacts_export/*.csv，按 userId 去重）
+# ---------------------------------------------------------------------------
+def build_contacts_index():
+    contacts = {}
+    d = os.path.join(ROOT, "_contacts_export")
+    if not os.path.isdir(d):
+        return []
+    for fn in sorted(os.listdir(d)):
+        if not fn.lower().endswith(".csv"):
+            continue
+        try:
+            with open(os.path.join(d, fn), encoding="utf-8-sig", newline="") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    uid = (row.get("userId") or "").strip()
+                    if not uid:
+                        continue
+                    if uid in contacts:
+                        continue  # 按 userId 去重，保留首次出现
+                    name = (row.get("name") or "").strip()
+                    py = to_pinyin(name)
+                    contacts[uid] = {
+                        "userId": uid,
+                        "name": name,
+                        "jobNumber": (row.get("jobNumber") or "").strip(),
+                        "title": (row.get("title") or "").strip(),
+                        "email": (row.get("email") or "").strip(),
+                        "mobile": (row.get("mobile") or "").strip(),
+                        "departments": (row.get("departments") or "").strip(),
+                        "orgName": (row.get("orgName") or "").strip(),
+                        "isAdmin": (row.get("isAdmin") or "").strip().lower() in ("true", "1", "是"),
+                        "namePy": py["full"],
+                        "nameInitials": py["initials"],
+                    }
+        except Exception:
+            continue
+    items = list(contacts.values())
+    items.sort(key=lambda x: (x["namePy"] or x["name"] or "", x["name"] or ""))
+    return items
+
+
 def main():
     now = datetime.datetime.now().isoformat(timespec="seconds")
 
@@ -482,6 +553,12 @@ def main():
         json.dump({"generatedAt": now, "count": len(minutes), "minutes": minutes},
                   f, ensure_ascii=False, indent=0)
     print(f"minutes_index.json —— {len(minutes)} 条听记/会议纪要")
+
+    contacts = build_contacts_index()
+    with open(os.path.join(HERE, "contacts_index.json"), "w", encoding="utf-8") as f:
+        json.dump({"generatedAt": now, "count": len(contacts), "contacts": contacts},
+                  f, ensure_ascii=False, indent=0)
+    print(f"contacts_index.json —— {len(contacts)} 位联系人")
 
 
 if __name__ == "__main__":

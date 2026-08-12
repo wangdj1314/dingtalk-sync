@@ -17,11 +17,18 @@ _sync_state/
 _test_download/
 _all_convs.json
 
-# === 会话文件下载目录（中文命名的文件夹）===
-# 这些是同步下来的聊天文件，按会话名命名
-# 用通配排除所有非源码目录
-/*.exe
-/*.dll
+# === 会话文件下载目录（同步产出，按会话名命名）===
+# 只保留源码目录，其余根目录下的文件夹均为数据
+/*
+!/.gitignore
+!/README.md
+!/sync_config.example.json
+!/dingtalk_sync.py
+!/app/
+!/_viewer/
+!/packaging/
+!/docs/
+!/_tools/
 
 # === Viewer 生成的索引（运行时生成）===
 _viewer/conv_index.json

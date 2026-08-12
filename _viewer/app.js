@@ -219,6 +219,7 @@
   let calendarIndex = [];    // 日程/会议（来自 _calendar_export，真实数据）
   let todoIndex = [];        // 待办（来自 _todo_export）
   let minutesIndex = [];     // 听记/会议纪要（来自 _minutes_export）
+  let contactsIndex = [];    // 通讯录（来自 _contacts_export）
   let activeConv = null;
   let currentFilter = "all";
   let currentTab = "chat"; // chat | files | schedule | minutes | todo
@@ -228,6 +229,7 @@
   let calSearchKw = "";
   let minSearchKw = "";
   let todoSearchKw = "";
+  let contactsSearchKw = "";
   let todoFilter = "all";    // all | 未完成 | 已完成
   let calView = "month";     // month | list
   let calMonth = new Date(); // 日历当前显示的月份
@@ -236,7 +238,7 @@
   async function boot() {
     let convIndex = {};
     try {
-      const [convRes, idxRes, convIdxRes, imgIdxRes, schedRes, calRes, todoRes, minRes] = await Promise.allSettled([
+      const [convRes, idxRes, convIdxRes, imgIdxRes, schedRes, calRes, todoRes, minRes, contactsRes] = await Promise.allSettled([
         fetch(DATA_BASE + "_all_convs.json").then((r) => r.json()),
         fetch("files_index.json").then((r) => r.json()),
         fetch("conv_index.json").then((r) => r.json()),
@@ -245,6 +247,7 @@
         fetch("calendar_index.json").then((r) => r.json()),
         fetch("todo_index.json").then((r) => r.json()),
         fetch("minutes_index.json").then((r) => r.json()),
+        fetch("contacts_index.json").then((r) => r.json()),
       ]);
       if (convRes.status === "fulfilled") convs = convRes.value || [];
       if (idxRes.status === "fulfilled" && idxRes.value && idxRes.value.files) {
@@ -273,6 +276,9 @@
       if (minRes.status === "fulfilled" && minRes.value && minRes.value.minutes) {
         minutesIndex = minRes.value.minutes;
       }
+      if (contactsRes.status === "fulfilled" && contactsRes.value && contactsRes.value.contacts) {
+        contactsIndex = contactsRes.value.contacts;
+      }
     } catch (e) {
       console.error(e);
     }
@@ -283,6 +289,8 @@
       const ci = convIndex[c._dir] || null;
       c._lastTime = ci ? (ci.lastTime || "") : "";
       c._preview = ci ? (ci.preview || "") : "";
+      c._pinyin = ci ? (ci.pinyin || "") : "";
+      c._py = ci ? (ci.py || "") : "";
     });
     // 按最近聊天时间倒序（无记录的排到最后，其中保持原顺序）
     convs.forEach((c, i) => { c._i = i; });
@@ -298,7 +306,7 @@
     });
     renderConvList();
     document.getElementById("footer-ver").textContent =
-      `v0.1 · 共 ${convs.length} 会话 · ${fileIndex.size} 文件 · ${calendarIndex.length} 日程 · ${minutesIndex.length} 听记 · ${todoIndex.length} 待办`;
+      `v0.1 · 共 ${convs.length} 会话 · ${fileIndex.size} 文件 · ${calendarIndex.length} 日程 · ${minutesIndex.length} 听记 · ${todoIndex.length} 待办 · ${contactsIndex.length} 联系人`;
   }
 
   // ============ 会话列表 ============
@@ -307,7 +315,13 @@
     return convs.filter((c) => {
       if (currentFilter === "group" && c.singleChat) return false;
       if (currentFilter === "single" && !c.singleChat) return false;
-      if (kw && c.title.toLowerCase().indexOf(kw) === -1) return false;
+      if (kw) {
+        // 标题 / 拼音全拼 / 首字母，任一包含即命中
+        const hit = c.title.toLowerCase().indexOf(kw) !== -1 ||
+          (c._pinyin && c._pinyin.indexOf(kw) !== -1) ||
+          (c._py && c._py.indexOf(kw) !== -1);
+        if (!hit) return false;
+      }
       return true;
     });
   }
@@ -405,13 +419,14 @@
 
   function showPanel(name) {
     currentTab = name;
-    const isGlobal = name === "schedule" || name === "minutes" || name === "todo";
+    const isGlobal = name === "schedule" || name === "minutes" || name === "todo" || name === "contacts";
     const hasConv = !!activeConv;
     document.getElementById("panel-chat").classList.toggle("hidden", name !== "chat");
     document.getElementById("panel-files").classList.toggle("hidden", name !== "files");
     document.getElementById("panel-schedule").classList.toggle("hidden", name !== "schedule");
     document.getElementById("panel-minutes").classList.toggle("hidden", name !== "minutes");
     document.getElementById("panel-todo").classList.toggle("hidden", name !== "todo");
+    document.getElementById("panel-contacts").classList.toggle("hidden", name !== "contacts");
     // 全局面板不需要会话即可看；聊天/文件无会话时回退到空状态
     const emptyState = document.getElementById("empty-state");
     if (isGlobal) {
@@ -425,6 +440,7 @@
     if (name === "schedule") renderSchedulePanel();
     else if (name === "minutes") renderMinutesPanel();
     else if (name === "todo") renderTodoPanel();
+    else if (name === "contacts") renderContactsPanel();
     updateChatTabs();
   }
 
@@ -716,6 +732,66 @@
     }
     html += "</div>";
     list.innerHTML = html;
+  }
+
+  // ============ 通讯录面板 ============
+  function contactDetailHtml(c) {
+    const row = (label, val) =>
+      val ? `<div class="cd-row"><span class="cd-label">${escapeHtml(label)}</span><span class="cd-val">${escapeHtml(val)}</span></div>` : "";
+    return row("工号", c.jobNumber) + row("职位", c.title) + row("部门", c.departments) +
+      row("组织", c.orgName) + row("邮箱", c.email) + row("手机", c.mobile) +
+      (c.namePy ? `<div class="cd-row"><span class="cd-label">拼音</span><span class="cd-val">${escapeHtml(c.namePy + " / " + c.nameInitials)}</span></div>` : "");
+  }
+  function renderContactsPanel() {
+    const panel = document.getElementById("panel-contacts");
+    const list = document.getElementById("contacts-list");
+    const countEl = document.getElementById("contacts-count");
+    const kw = contactsSearchKw.trim().toLowerCase();
+    let arr = contactsIndex;
+    if (kw) {
+      arr = arr.filter((c) =>
+        (c.name && c.name.toLowerCase().indexOf(kw) !== -1) ||
+        (c.namePy && c.namePy.indexOf(kw) !== -1) ||
+        (c.nameInitials && c.nameInitials.indexOf(kw) !== -1) ||
+        (c.departments && c.departments.toLowerCase().indexOf(kw) !== -1) ||
+        (c.title && c.title.toLowerCase().indexOf(kw) !== -1) ||
+        (c.jobNumber && c.jobNumber.toLowerCase().indexOf(kw) !== -1)
+      );
+    }
+    countEl.textContent = `共 ${contactsIndex.length} 位 · 匹配 ${arr.length} 位`;
+    list.innerHTML = "";
+    if (!arr.length) {
+      list.innerHTML = '<div class="files-empty">没有匹配的通讯录</div>';
+      return;
+    }
+    const CAP = kw ? 300 : 200;
+    const shown = arr.slice(0, CAP);
+    const frag = document.createDocumentFragment();
+    for (const c of shown) {
+      const card = document.createElement("div");
+      card.className = "contact-card";
+      const color = colorFor(c.name || "?");
+      card.innerHTML =
+        `<div class="avatar group" style="background:${color}">${escapeHtml(initials(c.name || "?"))}</div>` +
+        `<div class="contact-main">` +
+          `<div class="contact-name">${escapeHtml(c.name || "(未命名)")}` +
+            (c.isAdmin ? '<span class="contact-admin">管理员</span>' : "") + `</div>` +
+          `<div class="contact-sub">${escapeHtml((c.title || "") + (c.departments ? " · " + c.departments : ""))}</div>` +
+        `</div>`;
+      const detail = document.createElement("div");
+      detail.className = "contact-detail hidden";
+      detail.innerHTML = contactDetailHtml(c);
+      card.addEventListener("click", () => detail.classList.toggle("hidden"));
+      frag.appendChild(card);
+      frag.appendChild(detail);
+    }
+    list.appendChild(frag);
+    if (arr.length > CAP) {
+      const more = document.createElement("div");
+      more.className = "contacts-more";
+      more.textContent = `仅显示前 ${CAP} 位，输入更精确的关键词以缩小范围`;
+      list.appendChild(more);
+    }
   }
   function updateChatTabs() {
     document.querySelectorAll("#chat-tabs .chat-tab").forEach((t) => {
@@ -1028,6 +1104,103 @@
     if (!v) v = "http://10.10.10.6:8080";
     return v.replace(/\/+$/, "");
   }
+  // OnlyOffice JWT 密钥默认值（服务端 local.json 的 secret.inbox.string）。
+  // 内网个人工具，直接内置默认值即可开箱即用；用户也可在「系统设置」里覆盖。
+  const OO_SECRET_DEFAULT = "9aVyem7tOqnl0R6YAIgs2BnC8iBrGY65";
+  function getOnlyOfficeSecret() {
+    try {
+      const s = (localStorage.getItem("oo_secret") || "").trim();
+      if (s) return s;
+    } catch (e) {}
+    return OO_SECRET_DEFAULT;
+  }
+  // 对完整 config 做 OnlyOffice 所需的 JWT(HS256) 签名，返回 token 字符串。
+  // 用纯 JS 实现 HMAC-SHA256 —— 不依赖 crypto.subtle（后者在非安全上下文 http://IP 下为 undefined，会导致签名静默失败）。
+  function _b64url(str) {
+    const bytes = new TextEncoder().encode(str);
+    let bin = "";
+    for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+  function _b64urlBytes(bytes) {
+    let bin = "";
+    for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+  // UTF-8 字符串 → 字节数组
+  function _utf8(str) {
+    const out = [];
+    for (let i = 0; i < str.length; i++) {
+      let c = str.charCodeAt(i);
+      if (c < 0x80) out.push(c);
+      else if (c < 0x800) out.push(0xc0 | (c >> 6), 0x80 | (c & 0x3f));
+      else if (c >= 0xd800 && c < 0xdc00) {
+        i++;
+        const c2 = 0x10000 + (((c & 0x3ff) << 10) | (str.charCodeAt(i) & 0x3ff));
+        out.push(0xf0 | (c2 >> 18), 0x80 | ((c2 >> 12) & 0x3f), 0x80 | ((c2 >> 6) & 0x3f), 0x80 | (c2 & 0x3f));
+      } else out.push(0xe0 | (c >> 12), 0x80 | ((c >> 6) & 0x3f), 0x80 | (c & 0x3f));
+    }
+    return out;
+  }
+  // SHA-256（输入/输出均为 0..255 字节数组）
+  function _sha256(msg) {
+    const K = [0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+    let H = [0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+    const m = msg.slice();
+    m.push(0x80);
+    while (m.length % 64 !== 56) m.push(0);
+  const bitLen = msg.length * 8;
+  // 64-bit big-endian length: high 32 bits (0 for our sizes) + low 32 bits.
+  // NOTE: JS `>>>` reduces the shift count mod 32, so i*8 for i>=4 is wrong.
+  m.push(0, 0, 0, 0);
+  m.push((bitLen >>> 24) & 0xff, (bitLen >>> 16) & 0xff, (bitLen >>> 8) & 0xff, bitLen & 0xff);
+    const w = new Array(64);
+    for (let i = 0; i < m.length; i += 64) {
+      for (let t = 0; t < 16; t++) {
+        w[t] = (m[i + 4 * t] << 24) | (m[i + 4 * t + 1] << 16) | (m[i + 4 * t + 2] << 8) | m[i + 4 * t + 3];
+      }
+      for (let t = 16; t < 64; t++) {
+        const x15 = w[t - 15], x2 = w[t - 2];
+        const s0 = ((x15 >>> 7) | (x15 << 25)) ^ ((x15 >>> 18) | (x15 << 14)) ^ (x15 >>> 3);
+        const s1 = ((x2 >>> 17) | (x2 << 15)) ^ ((x2 >>> 19) | (x2 << 13)) ^ (x2 >>> 10);
+        w[t] = (w[t - 16] + s0 + w[t - 7] + s1) | 0;
+      }
+      let a = H[0], b = H[1], c = H[2], d = H[3], e = H[4], f = H[5], g = H[6], h = H[7];
+      for (let t = 0; t < 64; t++) {
+        const S1 = ((e >>> 6) | (e << 26)) ^ ((e >>> 11) | (e << 21)) ^ ((e >>> 25) | (e << 7));
+        const ch = (e & f) ^ (~e & g);
+        const t1 = (h + S1 + ch + K[t] + w[t]) | 0;
+        const S0 = ((a >>> 2) | (a << 30)) ^ ((a >>> 13) | (a << 19)) ^ ((a >>> 22) | (a << 10));
+        const maj = (a & b) ^ (a & c) ^ (b & c);
+        const t2 = (S0 + maj) | 0;
+        h = g; g = f; f = e; e = (d + t1) | 0; d = c; c = b; b = a; a = (t1 + t2) | 0;
+      }
+      H[0] = (H[0] + a) | 0; H[1] = (H[1] + b) | 0; H[2] = (H[2] + c) | 0; H[3] = (H[3] + d) | 0;
+      H[4] = (H[4] + e) | 0; H[5] = (H[5] + f) | 0; H[6] = (H[6] + g) | 0; H[7] = (H[7] + h) | 0;
+    }
+    const out = [];
+    for (let i = 0; i < 8; i++) {
+      out.push((H[i] >>> 24) & 0xff, (H[i] >>> 16) & 0xff, (H[i] >>> 8) & 0xff, H[i] & 0xff);
+    }
+    return out;
+  }
+  function _hmacSha256(keyStr, msgStr) {
+    let key = _utf8(keyStr);
+    if (key.length > 64) key = _sha256(key);
+    const k = new Array(64).fill(0);
+    for (let i = 0; i < key.length; i++) k[i] = key[i];
+    const ipad = k.map((b) => b ^ 0x36);
+    const opad = k.map((b) => b ^ 0x5c);
+    const inner = _sha256(ipad.concat(_utf8(msgStr)));
+    return _sha256(opad.concat(inner));
+  }
+  function signOnlyOfficeToken(config, secret) {
+    const header = _b64url(JSON.stringify({ alg: "HS256", typ: "JWT" }));
+    const payload = _b64url(JSON.stringify(config));
+    const data = header + "." + payload;
+    const sig = _b64urlBytes(_hmacSha256(secret, data));
+    return data + "." + sig;
+  }
   let _ooApiLoading = null;
   function loadOnlyOfficeApi(base) {
     if (window.DocsAPI) return Promise.resolve();
@@ -1065,7 +1238,7 @@
     }
     editorEl.innerHTML = "";
     try {
-      _ooEditor = new window.DocsAPI.DocEditor("oo-editor", {
+      const config = {
         document: {
           fileType: ext,
           key: onlyOfficeKey(relPath),
@@ -1079,12 +1252,18 @@
             console.error("OnlyOffice error:", e);
             const msg = (e && (e.message || e.error)) ? String(e.message || e.error) : String(e);
             editorEl.innerHTML = '<div class="oo-error">OnlyOffice 返回错误：<br>' + escapeHtml(msg) +
-              '<br><br>若提示下载失败，请确认是用 <b>http://10.10.10.10:8080/_viewer/</b>（而非 127.0.0.1）打开，且 OnlyOffice 能访问该文件地址。</div>';
+              '<br><br>若提示「令牌格式不正确」，请在左侧栏「JWT 密钥」填入 OnlyOffice 的服务端密钥，或到 OnlyOffice 关闭 JWT 保护。</div>';
           }
         },
         height: "100%",
         width: "100%"
-      });
+      };
+      const secret = getOnlyOfficeSecret();
+      if (secret) {
+        try { config.token = await signOnlyOfficeToken(config, secret); }
+        catch (e) { console.warn("OnlyOffice token 签名失败：", e); }
+      }
+      _ooEditor = new window.DocsAPI.DocEditor("oo-editor", config);
     } catch (e) {
       editorEl.innerHTML = '<div class="oo-error">OnlyOffice 初始化失败：' + escapeHtml(String(e)) + "</div>";
     }
@@ -1388,25 +1567,53 @@
     listEl.appendChild(frag);
   }
 
-  // ============ 聊天记录搜索 ============
+  // ============ 聊天记录搜索（文字 / 日期） ============
+  const DATE_RE = /(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})|(\d{1,2})[-/.](\d{1,2})/;
+  function matchDateQuery(q) {
+    const m = q.match(DATE_RE);
+    if (!m) return null;
+    let y, mo, d;
+    if (m[1]) { y = +m[1]; mo = +m[2]; d = +m[3]; }
+    else { y = new Date().getFullYear(); mo = +m[4]; d = +m[5]; }
+    if (mo < 1 || mo > 12 || d < 1 || d > 31) return null;
+    return { date: `${y}-${String(mo).padStart(2, "0")}-${String(d).padStart(2, "0")}`, raw: m[0] };
+  }
   function applyChatSearch() {
     chatSearchKw = document.getElementById("chat-search").value.trim();
     if (!activeConv) return;
-    const kw = chatSearchKw.toLowerCase();
-    const filtered = kw
-      ? currentMsgs.filter((m) =>
-          String(m.content).toLowerCase().indexOf(kw) !== -1 ||
-          String(m.sender).toLowerCase().indexOf(kw) !== -1
-        )
-      : currentMsgs;
-    renderMessages(activeConv, filtered, chatSearchKw);
+    const raw = chatSearchKw;
+    const kw = raw.toLowerCase();
+    const dm = matchDateQuery(raw);
+    let filtered;
+    let mode = "text";
+    if (dm) {
+      mode = "date";
+      // 按日期筛选当天消息；若日期外还有其它文字，再叠加文字过滤
+      const textKw = raw.replace(dm.raw, "").trim().toLowerCase();
+      filtered = currentMsgs.filter((m) => String(m.time).indexOf(dm.date) === 0);
+      if (textKw) {
+        filtered = filtered.filter((m) =>
+          String(m.content).toLowerCase().indexOf(textKw) !== -1 ||
+          String(m.sender).toLowerCase().indexOf(textKw) !== -1);
+      }
+    } else {
+      filtered = kw
+        ? currentMsgs.filter((m) =>
+            String(m.content).toLowerCase().indexOf(kw) !== -1 ||
+            String(m.sender).toLowerCase().indexOf(kw) !== -1
+          )
+        : currentMsgs;
+    }
+    renderMessages(activeConv, filtered, raw);
     // 搜索时显示结果数提示
     const panel = document.getElementById("panel-chat");
-    if (kw && filtered.length && filtered.length < currentMsgs.length) {
+    if (raw && filtered.length && filtered.length < currentMsgs.length) {
       const tip = document.createElement("div");
       tip.className = "sys-msg";
       tip.id = "search-tip";
-      tip.textContent = `找到 ${filtered.length} 条匹配记录 / 共 ${currentMsgs.length} 条`;
+      tip.textContent = mode === "date"
+        ? `日期 ${dm.date} 共 ${filtered.length} 条 / 全部 ${currentMsgs.length} 条`
+        : `找到 ${filtered.length} 条匹配记录 / 共 ${currentMsgs.length} 条`;
       panel.insertBefore(tip, panel.firstChild);
     }
   }
@@ -1494,14 +1701,47 @@
     });
   });
 
-  // OnlyOffice 设置 + 预览弹窗
-  const ooUrlInput = document.getElementById("oo-url");
-  let _ooSaved = "";
+  // 通讯录搜索
+  const contactsSearchInput = document.getElementById("contacts-search");
+  contactsSearchInput.addEventListener("input", () => {
+    contactsSearchKw = contactsSearchInput.value;
+    renderContactsPanel();
+  });
+
+  // 系统设置（二级菜单 / 弹窗）：OnlyOffice 地址 + JWT 密钥
+  const settingsEntry = document.getElementById("settings-entry");
+  const settingsModal = document.getElementById("settings-modal");
+  const setOoUrl = document.getElementById("set-oo-url");
+  const setOoSecret = document.getElementById("set-oo-secret");
+  let _ooSaved = "", _ooSecretSaved = "";
   try { _ooSaved = (localStorage.getItem("oo_url") || "").trim(); } catch (e) {}
-  if (_ooSaved) ooUrlInput.value = _ooSaved;
-  ooUrlInput.addEventListener("change", () => {
-    const v = ooUrlInput.value.trim();
+  try { _ooSecretSaved = (localStorage.getItem("oo_secret") || "").trim(); } catch (e) {}
+  if (_ooSaved) setOoUrl.value = _ooSaved;
+  if (_ooSecretSaved) setOoSecret.value = _ooSecretSaved;
+  // 首次使用：把默认 JWT 密钥写入 localStorage 并回填输入框，保证开箱即用
+  else {
+    _ooSecretSaved = OO_SECRET_DEFAULT;
+    try { localStorage.setItem("oo_secret", _ooSecretSaved); } catch (e) {}
+    setOoSecret.value = _ooSecretSaved;
+  }
+  function openSettings() {
+    settingsModal.classList.remove("hidden");
+    settingsModal.setAttribute("aria-hidden", "false");
+  }
+  function closeSettings() {
+    settingsModal.classList.add("hidden");
+    settingsModal.setAttribute("aria-hidden", "true");
+  }
+  settingsEntry.addEventListener("click", openSettings);
+  document.getElementById("settings-close").addEventListener("click", closeSettings);
+  settingsModal.addEventListener("click", (e) => { if (e.target.id === "settings-modal") closeSettings(); });
+  setOoUrl.addEventListener("change", () => {
+    const v = setOoUrl.value.trim();
     try { if (v) localStorage.setItem("oo_url", v); else localStorage.removeItem("oo_url"); } catch (e) {}
+  });
+  setOoSecret.addEventListener("change", () => {
+    const v = setOoSecret.value.trim();
+    try { if (v) localStorage.setItem("oo_secret", v); else localStorage.removeItem("oo_secret"); } catch (e) {}
   });
   document.getElementById("oo-close").addEventListener("click", closeOnlyOffice);
   document.getElementById("oo-modal").addEventListener("click", (e) => {

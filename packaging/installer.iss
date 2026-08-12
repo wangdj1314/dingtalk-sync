@@ -1,10 +1,10 @@
 ; 钉钉同步工具 - Inno Setup 安装脚本
 ; ====================================
 ; 编译: ISCC.exe installer.iss
-; 输出: Output/DingTalkSync_Setup_v2.3.exe
+; 输出: Output/DingTalkSync_Setup_v2.4.exe
 
 #define MyAppName "钉钉同步工具"
-#define MyAppVersion "2.3"
+#define MyAppVersion "2.4"
 #define MyAppPublisher "Risen IT"
 #define MyAppExeName "DingTalkSync.exe"
 #define MyAppIcon "dist\DingTalkSync\resources\dingtalk_sync.ico"

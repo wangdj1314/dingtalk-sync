@@ -490,7 +490,7 @@ class MainWindow(QMainWindow):
         logo_text.setSpacing(0)
         lt1 = QLabel("钉钉同步")
         lt1.setStyleSheet(f"font-size: 13px; font-weight: 700; color: {C['text']};")
-        lt2 = QLabel("v2.3 Standalone")
+        lt2 = QLabel("v2.4 Standalone")
         lt2.setStyleSheet(f"font-size: 10px; color: {C['text_muted']};")
         logo_text.addWidget(lt1)
         logo_text.addWidget(lt2)
